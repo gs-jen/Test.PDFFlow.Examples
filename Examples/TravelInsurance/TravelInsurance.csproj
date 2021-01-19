@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- TODO: change PackageReference to Gehtsoft.PDFFlow after the release -->
+    <PackageReference Include="Haru.Net" Version="1.0.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="images\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!--<ItemGroup> &lt;!&ndash; TODO: remove this ItemGroup after the release &ndash;&gt;
+    <Reference Include="Gehtsoft.PDFFlow">
+      <HintPath>..\..\Gehtsoft.PDFFlow\bin\Debug\netstandard2.0\Gehtsoft.PDFFlow.dll</HintPath>
+    </Reference>
+  </ItemGroup>-->
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gehtsoft.PDFFlow\Gehtsoft.PDFFlow.csproj" />
+  </ItemGroup>
+
+  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent"> &lt;!&ndash; TODO: remove this Target after the release &ndash;&gt;
+    <Exec Command="copy /Y ..\..\..\Haru.Net\Haru.Net\bin\Debug\netstandard2.0\Haru.Net.dll bin\Debug\netcoreapp2.1" />
+  </Target>-->
+
+</Project>

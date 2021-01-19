@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+<!--
+    <StartupObject>BankAccountStatement.BankAccountStatementBuilderApp</StartupObject>
+-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- TODO: change PackageReference to Gehtsoft.PDFFlow after the release -->
+    <PackageReference Include="Haru.Net" Version="1.0.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Content\**\*.*" />
+    <None Remove="images\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Content\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gehtsoft.PDFFlow\Gehtsoft.PDFFlow.csproj" />
+  </ItemGroup>
+
+</Project>

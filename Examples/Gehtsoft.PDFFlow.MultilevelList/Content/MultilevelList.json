@@ -1,0 +1,464 @@
+[
+  {
+    "Shipment": "2020-01-23 10:13AM",
+    "Orders": 
+	[
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "John Smith",	
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "559555",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "626666",
+	    			"Name": "Logitech MK270 Wireless Keyboard"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "Jack Jackson",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "222292",
+	    			"Name": "iPhone Charger, YUNSONG 3Pack 6FT Nylon Braided Lightning Cable Charging Cord USB Cable Compatible with iPhone 11 Pro Max XS XR X 8 7 6S 6 Plus SE 5S 5C 5 iPad"	
+	    		},
+	    		{
+	    			"Code": "452444",
+	    			"Name": "HP 63 | 2 Ink Cartridges | Black, Tri-color | F6U61AN, F6U62AN"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "Jane Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "218111",
+	    			"Name": "Razer DeathAdder Elite Gaming Mouse: 16,000 DPI Optical Sensor - Chroma RGB Lighting - 7 Programmable Buttons - Mechanical Switches - Rubber Side Grips - Matte Black"	
+	    		},
+	    		{
+	    			"Code": "377577",
+	    			"Name": "Logitech C920S HD Pro Webcam with Privacy Shutter - Widescreen Video Calling and Recording, 1080p Streaming Camera, Desktop or Laptop Webcam"
+	    		}
+	    	]	
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "John Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "828858",
+	    			"Name": "WD 2TB Elements Portable External Hard Drive - USB 3.0 - WDBU6Y0020BBK"	
+	    		},
+	    		{
+	    			"Code": "919989",
+	    			"Name": "VicTsing MM057 2.4G Wireless Mouse Portable Mobile Optical Mouse with USB Receiver, 5 Adjustable DPI Levels, 6 Buttons for Notebook, PC, Laptop, Computer, Macbook - Black"
+	    		}
+	    	]
+	  }
+	]
+  },
+  {
+    "Shipment": "2020-02-11 09:15AM",
+"Orders": 
+	[
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "John Smith",	
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "527565",
+	    			"Name": "Samsung 970 EVO SSD 1TB - M.2 NVMe Interface Internal Solid State Drive with V-NAND Technology (MZ-V7E1T0BW), Black/Red"	
+	    		},
+	    		{
+	    			"Code": "666261",
+	    			"Name": "Seagate FireCuda Gaming (Compute) 2TB Solid State Hybrid Drive Performance SSHD – 2.5 Inch SATA 6GB/s Flash Accelerated for Gaming PC Laptop - Frustration Free Packaging (ST2000LX001)"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "Jack Jackson",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "515759",
+	    			"Name": "AMD Ryzen 9 3900X 12-core, 24-Thread Unlocked Desktop Processor with Wraith Prism LED Cooler"	
+	    		},
+	    		{
+	    			"Code": "126964",
+	    			"Name": "Crucial MX500 500GB 3D NAND SATA 2.5 Inch Internal SSD - CT500MX500SSD1"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "Jane Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "153595",
+	    			"Name": "Texas Instruments TI-30X IIS 2-Line Scientific Calculator, Black with Blue Accents"	
+	    		},
+	    		{
+	    			"Code": "616466",
+	    			"Name": "Corsair Vengeance LPX 16GB (2x8GB) DDR4 DRAM 3000MHz C15 Desktop Memory Kit - Black (CMK16GX4M2B3000C15)"
+	    		}
+	    	]	
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "John Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "524595",
+	    			"Name": "Rioddas External CD Drive, USB 3.0 Portable CD/DVD +/-RW Drive Slim DVD/CD ROM Rewriter Burner Compatible with Laptop Desktop PC Windows Linux OS Apple Mac(Black)"	
+	    		},
+	    		{
+	    			"Code": "167668",
+	    			"Name": "CanaKit Raspberry Pi 4 4GB Starter Kit - 4GB RAM"
+	    		}
+	    	]
+	  }
+	]
+  },
+  {
+    "Shipment": "2020-01-16 11:33AM",
+"Orders": 
+	[
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "John Smith",	
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "953255",
+	    			"Name": "ARCTIC MX-4 - Thermal Compound Paste For Coolers | Heat Sink Paste | Composed of Carbon Micro-particles | Easy to Apply | High Durability - 4 Grams"	
+	    		},
+	    		{
+	    			"Code": "636667",
+	    			"Name": "SanDisk 1TB Extreme Portable External SSD - Up to 550MB/s - USB-C, USB 3.1 - SDSSDE60-1T00-G25"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "Jack Jackson",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "575555",
+	    			"Name": "NZXT H510 - CA-H510B-W1 - Compact ATX Mid-Tower PC Gaming Case - Front I/O USB Type-C Port - Tempered Glass Side Panel - Cable Management System - Water-Cooling Ready - White/Black"	
+	    		},
+	    		{
+	    			"Code": "165696",
+	    			"Name": "ELEGOO UNO Project Super Starter Kit with Tutorial and UNO R3 Compatible with Arduino IDE"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "Jane Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "126559",
+	    			"Name": "ASUS ROG Strix X570-E Gaming ATX Motherboard with PCIe 4.0, Aura Sync RGB Lighting, 2.5 Gbps and Intel Gigabit LAN, WiFi 6 (802.11Ax), Dual M.2 with Heatsinks, SATA 6GB/S and USB 3.2 Gen 2"	
+	    		},
+	    		{
+	    			"Code": "826566",
+	    			"Name": "AMD Ryzen 9 3900X 12-core, 24-Thread Unlocked Desktop Processor with Wraith Prism LED Cooler"
+	    		}
+	    	]	
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "John Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "155358",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "166686",
+	    			"Name": "Elgato Video Capture - Digitize Video for Mac, PC or iPad (USB 2.0)"
+	    		}
+	    	]
+	  }
+	]
+  },
+  {
+    "Shipment": "2020-01-04 08:14AM",
+"Orders": 
+	[
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "John Smith",	
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "535555",
+	    			"Name": "WD 2TB Elements Portable External Hard Drive - USB 3.0 - WDBU6Y0020BBK"	
+	    		},
+	    		{
+	    			"Code": "636766",
+	    			"Name": "Logitech MK270 Wireless Keyboard"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "Jack Jackson",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "555585",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "166667",
+	    			"Name": "HP 63 | 2 Ink Cartridges | Black, Tri-color | F6U61AN, F6U62AN"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "Jane Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "555755",
+	    			"Name": "Corsair Vengeance LPX 16GB (2x8GB) DDR4 DRAM 3000MHz C15 Desktop Memory Kit - Black (CMK16GX4M2B3000C15)"	
+	    		},
+	    		{
+	    			"Code": "663666",
+	    			"Name": "Logitech MK270 Wireless Keyboard"
+	    		}
+	    	]	
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "John Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "552555",
+	    			"Name": "AMD Ryzen 9 3900X 12-core, 24-Thread Unlocked Desktop Processor with Wraith Prism LED Cooler"	
+	    		},
+	    		{
+	    			"Code": "166966",
+	    			"Name": "Sabrent Adattatore USB Audio Esterno Stereo per Windows e Mac. Plug & Play Nessun driver necessario. [Nero] (AU-MMSA)"
+	    		}
+	    	]
+	  }
+	]
+  },
+  {
+    "Shipment": "2019-03-13 11:18AM",
+"Orders": 
+	[
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "John Smith",	
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "355585",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "616666",
+	    			"Name": "Corsair Vengeance LPX 16GB (2x8GB) DDR4 DRAM 3000MHz C15 Desktop Memory Kit - Black (CMK16GX4M2B3000C15)"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "Jack Jackson",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "535585",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "626676",
+	    			"Name": "Logitech MK270 Wireless Keyboard"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "Jane Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "159555",
+	    			"Name": "Thermal Grizzly Kryonaut Thermal Grease Paste - 1.0 Gram"	
+	    		},
+	    		{
+	    			"Code": "366679",
+	    			"Name": "WD 2TB Elements Portable External Hard Drive - USB 3.0 - WDBU6Y0020BBK"
+	    		}
+	    	]	
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "John Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "155855",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "768666",
+	    			"Name": "LaCie Rugged Mini 4TB External Hard Drive Portable HDD – USB 3.0 USB 2.0 compatible, Drop Shock Dust Rain Resistant Shuttle Drive, for Mac and PC Computer Desktop Workstation PC Laptop (LAC9000633)"
+	    		}
+	    	]
+	  }
+	]
+  },
+  {
+    "Shipment": "2019-07-06 07:05AM",
+"Orders": 
+	[
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "John Smith",	
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "855575",
+	    			"Name": "AMD Ryzen 9 3900X 12-core, 24-Thread Unlocked Desktop Processor with Wraith Prism LED Cooler"	
+	    		},
+	    		{
+	    			"Code": "366766",
+	    			"Name": "Thermal Grizzly Kryonaut Thermal Grease Paste - 1.0 Gram"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "Jack Jackson",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "255655",
+	    			"Name": "Sabrent Adattatore USB Audio Esterno Stereo per Windows e Mac. Plug & Play Nessun driver necessario. [Nero] (AU-MMSA)"	
+	    		},
+	    		{
+	    			"Code": "366966",
+	    			"Name": "Logitech MK270 Wireless Keyboard"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "Jane Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "255455",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "366766",
+	    			"Name": "Thermal Grizzly Kryonaut Thermal Grease Paste - 1.0 Gram"
+	    		}
+	    	]	
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "John Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "354585",
+	    			"Name": "WD 2TB Elements Portable External Hard Drive - USB 3.0 - WDBU6Y0020BBK"	
+	    		},
+	    		{
+	    			"Code": "264666",
+	    			"Name": "Logitech MK270 Wireless Keyboard"
+	    		}
+	    	]
+	  }
+	]
+  },
+  {
+    "Shipment": "2019-09-19 06:56AM",
+"Orders": 
+	[
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "John Smith",	
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "525758",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "364666",
+	    			"Name": "Corsair Vengeance LPX 16GB (2x8GB) DDR4 DRAM 3000MHz C15 Desktop Memory Kit - Black (CMK16GX4M2B3000C15)"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "Jack Jackson",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "157555",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "364666",
+	    			"Name": "Sabrent Adattatore USB Audio Esterno Stereo per Windows e Mac. Plug & Play Nessun driver necessario. [Nero] (AU-MMSA)"
+	    		}
+	    	]
+	  },
+	  {
+	    "Order": "2019-10-08 11:14AM",
+	    "Customer": "Jane Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "525755",
+	    			"Name": "Samsung 128GB 100MB/s (U3) MicroSDXC EVO Select Memory Card"	
+	    		},
+	    		{
+	    			"Code": "367666",
+	    			"Name": "Logitech MK270 Wireless Keyboard"
+	    		}
+	    	]	
+	  },
+	  {
+	    "Order": "2019-11-15 09:25AM",
+	    "Customer": "John Doe",
+	    "Products": 
+	    	[
+	    		{
+	    			"Code": "458552",
+	    			"Name": "LaCie Rugged Mini 4TB External Hard Drive Portable HDD – USB 3.0 USB 2.0 compatible, Drop Shock Dust Rain Resistant Shuttle Drive, for Mac and PC Computer Desktop Workstation PC Laptop (LAC9000633)"	
+	    		},
+	    		{
+	    			"Code": "763696",
+	    			"Name": "WD 2TB Elements Portable External Hard Drive - USB 3.0 - WDBU6Y0020BBK"
+	    		}
+	    	]
+	  }
+	]
+  }
+]
