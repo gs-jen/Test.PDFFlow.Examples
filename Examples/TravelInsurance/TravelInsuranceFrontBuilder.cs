@@ -1,16 +1,16 @@
 ﻿using Gehtsoft.PDFFlow.Builder;
-using System.IO;
 using static TravelInsurance.TravelInsuranceBuilder;
 
 namespace TravelInsurance
 {
     internal class TravelInsuranceFrontBuilder
     {
-        public void Build(DocumentBuilder documentBuilder)
+        internal void Build(DocumentBuilder documentBuilder)
         {
             var sectionBuilder = documentBuilder.AddSection()
                 .SetOrientation(Orientation)
-                .SetMargins(Margins);
+                .SetMargins(Margins)
+                .SetStyleFont(FNT7);
 
             new TravelInsuranceHeaderBuilder().Build(sectionBuilder);
             new TravelInsuranceGeneralInfoBuilder().Build(sectionBuilder);

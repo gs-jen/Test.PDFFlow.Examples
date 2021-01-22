@@ -1,8 +1,6 @@
 ﻿using ConcertTicketData.Model;
 using Gehtsoft.PDFFlow.Builder;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 using System.IO;
 
 namespace ConcertTicket
@@ -11,17 +9,16 @@ namespace ConcertTicket
     {
         public static DocumentBuilder Run()
         {
-
             string ticketJsonFile = CheckFile(Path.Combine("Content", "ticket-data.json"));
             string ticketJsonContent = File.ReadAllText(ticketJsonFile);
             TicketData ticketData =
                JsonConvert.DeserializeObject<TicketData>(ticketJsonContent);
 
-            string JsonFile = CheckFile(Path.Combine("Content", "data.json"));
-            string JsonContent = File.ReadAllText(JsonFile);
+            string jsonFile = CheckFile(Path.Combine("Content", "concert-data.json"));
+            string jsonContent = File.ReadAllText(jsonFile);
 
             ConcertData concertData =
-               JsonConvert.DeserializeObject<ConcertData>(JsonContent);
+               JsonConvert.DeserializeObject<ConcertData>(jsonContent);
 
             ConcertTicketBuilder ConcertTicketBuilder = 
                 new ConcertTicketBuilder();

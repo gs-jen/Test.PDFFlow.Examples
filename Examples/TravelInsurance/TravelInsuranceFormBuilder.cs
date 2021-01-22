@@ -1,26 +1,21 @@
 ﻿using Gehtsoft.PDFFlow.Builder;
 using Gehtsoft.PDFFlow.Models.Shared;
 using Gehtsoft.PDFFlow.Models.Enumerations;
-using Gehtsoft.PDFFlow.Utils;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
+using static TravelInsurance.TravelInsuranceBuilder;
 
 namespace TravelInsurance
 {
     static class TravelInsuranceFormBuilder
     {
-        internal static readonly string CheckboxPath = Path.Combine(
-            Directory.GetCurrentDirectory(), "images", "TravelInsurance_Checkbox.png");
-
         public static TableBuilder CreateTable(SectionBuilder sectionBuilder, 
             int columnNumber, float topMargin = 13)
         {
             return sectionBuilder
-                .AddTable(Enumerable.Repeat(XUnit.FromPercent(100f / columnNumber), 
+                .AddTable(Enumerable.Repeat(XUnit.FromPercent(100f / columnNumber),
                 columnNumber).ToArray())
                     .SetMarginTop(topMargin)
-                    .SetContentRowStyleFont(Fonts.Helvetica(7))
                     .SetBorder(Stroke.None)
                     .SetContentRowBorderWidth(0, 0, 0, 0);
         }
@@ -34,7 +29,7 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(columnNumber)
                         .AddParagraph(title)
-                            .SetFontSize(11)
+                            .SetFont(FNT11)
                             .SetBold()
                             .SetLineSpacing(0.95f);
         }
@@ -52,12 +47,10 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(cellContent.Value)
                         .SetPadding(1, 1, 0, bottomPadding)
-                        .SetFont(Fonts.Helvetica(7f))
                         .AddParagraph(cellContent.Key)
                             .SetLineSpacing(0.95f);
                     
             }
         }
-
     }
 }

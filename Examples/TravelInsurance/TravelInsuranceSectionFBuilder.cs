@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Gehtsoft.PDFFlow.Builder;
 using Gehtsoft.PDFFlow.Models.Enumerations;
-using Gehtsoft.PDFFlow.Utils;
 using static TravelInsurance.TravelInsuranceFormBuilder;
+using static TravelInsurance.TravelInsuranceBuilder;
 
 namespace TravelInsurance
 {
@@ -19,10 +19,10 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(2)
                         .SetPadding(0, 6, 0, 0)
-                        .AddParagraphToCell("In respect of any other claim, which does not " +
-                                            "fall within the sections stated above, please " +
-                                            "provide details of the claim you are submitting." +
-                                            "  If the space below is insufficient for such details,");
+                        .AddParagraphToCell("In respect of any other claim, which does not fall " +
+                            "within the sections stated above, please provide details of the " +
+                            "claim you are submitting.  If the space below is insufficient for " +
+                            "such details,");
 
             CreateRow(tableBuilder, new Dictionary<string, int>() { { "", 2 } }, 10);
 
@@ -31,28 +31,11 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(2)
                         .SetPadding(0, 4, 0, 25)
-                        .AddParagraph("I declare that to the best of my knowledge and belief " +
-                                        "that the above particulars are true and accurate." +
-                                        "If I made or shall make any false or fraudulent statements, or withhold " +
-                                        "material facts whatsoever in respect of this claim, " +
-                                        "the Policy shall be void and I shall forfeit all rights " +
-                                        "to recover therein." +
-                                        "\n\nI authorise any hospital doctor, other person " +
-                                        "who has attended" +
-                                        " or examined me, to furnish to the Company, and/ or " +
-                                        "its authorised" +
-                                        " representatives, any and all information relating " +
-                                        "to any illness or injury," +
-                                        " medical history, consultation, prescription or treatment," +
-                                        " and copies of all hospital or medical records." +
-                                        "  A photocopy of " +
-                                        "this authorisation shall be considered as effective " +
-                                        "and valid as the original.")
+                        .AddParagraph(SECTIONF_LONG_TEXT)
                             .SetLineSpacing(0.9f);
 
             sectionBuilder
                 .AddTable()
-                    .SetContentRowStyleFont(Fonts.Helvetica(7))
                     .SetBorder(Stroke.None)
                     .AddColumnToTable("", 178)
                     .AddColumnToTable("", 104)
@@ -90,7 +73,6 @@ namespace TravelInsurance
                             .AddParagraphToCell("Signed here (Policyholder)")
             .ToSection()
                 .AddTable()
-                    .SetContentRowStyleFont(Fonts.Helvetica(7))
                     .SetBorder(Stroke.Solid)
                     .AddColumnToTable("", 178)
                     .AddColumnToTable("", 187)

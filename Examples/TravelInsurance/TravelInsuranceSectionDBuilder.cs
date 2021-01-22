@@ -17,9 +17,8 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(2)
                         .SetPadding(0, 10, 0, 0)
-                        .AddParagraphToCell("Documents required for Section D" +
-                                            "\n• letter from Airlines/Carrier " +
-                                            "stating the reason and duration of delay");
+                        .AddParagraphToCell("Documents required for Section D\n• letter from " +
+                            "Airlines/Carrier stating the reason and duration of delay");
 
             CreateRow(tableBuilder, new Dictionary<string, int>()
                 {

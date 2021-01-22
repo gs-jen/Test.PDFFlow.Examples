@@ -7,10 +7,10 @@ namespace TravelInsurance
     {
         internal void Build(DocumentBuilder documentBuilder)
         {
-            var sectionBuilder = documentBuilder.AddSection();
-            sectionBuilder
+            var sectionBuilder = documentBuilder.AddSection()
                 .SetOrientation(Orientation)
-                .SetMargins(Margins);
+                .SetMargins(Margins)
+                .SetStyleFont(FNT7);
 
             new TravelInsuranceSectionCBuilder().Build(sectionBuilder);
             new TravelInsuranceSectionDBuilder().Build(sectionBuilder);

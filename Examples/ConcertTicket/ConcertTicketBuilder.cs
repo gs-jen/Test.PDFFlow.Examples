@@ -4,13 +4,9 @@ using Gehtsoft.PDFFlow.Models.Enumerations;
 using Gehtsoft.PDFFlow.Models.Shared;
 using Gehtsoft.PDFFlow.Utils;
 using System.IO;
-using System.Collections.Generic;
 using System.Globalization;
-using System;
 using Gehtsoft.PDFFlow.UserUtils;
-using System.Data;
-using System.Reflection.Emit;
-using System.Linq;
+
 
 namespace ConcertTicket
 {
@@ -33,32 +29,31 @@ namespace ConcertTicket
         internal static readonly FontBuilder FNT12 = Fonts.Helvetica(12f);
         internal static readonly FontBuilder FNT12B = Fonts.Helvetica(12f).SetBold(true);
         internal static readonly FontBuilder FNT20 = Fonts.Helvetica(20f);
-        internal static readonly FontBuilder FNT20B = Fonts.Helvetica(19f).SetBold();
+        internal static readonly FontBuilder FNT19B = Fonts.Helvetica(19f).SetBold();
 
 
 
         internal DocumentBuilder Build()
         {
             DocumentBuilder documentBuilder = DocumentBuilder.New();
-            var ConcertSection = documentBuilder.AddSection();
+            var concertSection = documentBuilder.AddSection();
 
-            ConcertSection
+            concertSection
                  .SetOrientation(Orientation)
                  .SetMargins(Margins);
 
-            concertTable(ConcertSection);
+            addConcertTable(concertSection);
+            addInfoTable(concertSection);
+            addCounterFoil(concertSection);
 
             return documentBuilder;
         }
 
-        private void concertTable(SectionBuilder section)
+        public void addConcertTable(SectionBuilder section)
         {
-            var concertTable = section.AddTable(
-
-            (TableBuilder builder) =>
-            {
-                builder.SetContentRowStyleBorder(borderBuilder => borderBuilder.SetStroke(Stroke.None));
-            });
+            var concertTable = section.AddTable()
+                .SetContentRowStyleBorder(borderBuilder =>
+                    borderBuilder.SetStroke(Stroke.None));
 
             concertTable
                 .SetWidth(XUnit.FromPercent(100))
@@ -69,21 +64,22 @@ namespace ConcertTicket
 
 
             var row0Builder = concertTable.AddRow();
-            AddLogoImage(row0Builder.AddCell("", 0, 2));// poster
-            AddConcertData(row0Builder.AddCell("", 3, 0).SetPadding(32, 0, 0, 8));
-
+            AddLogoImage(row0Builder.AddCell("", 0, 2));
+            AddConcertData(row0Builder.AddCell("", 3, 0)
+                .SetPadding(32, 0, 0, 8));
 
             var row2Builder = concertTable.AddRow();
-            row2Builder.AddCell(); //empty cell
-            No(row2Builder.AddCell("").SetFont(FNT10).SetPadding(32, 0, 0, 0)); //eticket number
+            row2Builder.AddCell();
+            No(row2Builder.AddCell("").SetFont(FNT10)
+                .SetPadding(32, 0, 0, 0));
             FillTicketData(row2Builder.AddCell());
             FillPersonalInfo(row2Builder.AddCell());
-
-            var infoTable = section.AddTable(
-            (TableBuilder builder) =>
-            {
-                builder.SetContentRowStyleBorder(borderBuilder => borderBuilder.SetStroke(Stroke.None));
-            });
+        }
+        public void addInfoTable(SectionBuilder section)
+        {
+            var infoTable = section.AddTable()
+                .SetContentRowStyleBorder(borderBuilder =>
+                    borderBuilder.SetStroke(Stroke.None));
 
             infoTable
                 .SetMarginTop(9f)
@@ -93,21 +89,21 @@ namespace ConcertTicket
                 .AddColumnPercentToTable("", 25);
 
             var row8Builder = infoTable.AddRow();
-            FillRuleA(0, 10, row8Builder.AddCell("").SetFont(FNT10));
-            FillRuleP(row8Builder.AddCell("",2,0).SetFont(FNT10));
+            FillRuleA(start: 0, end: 10, row8Builder.AddCell("").SetFont(FNT10));
+            FillRuleP(row8Builder.AddCell("", 2, 0).SetFont(FNT10));
 
             var row9Builder = infoTable.AddRow();
             FillBandlist(row9Builder.AddCell("").SetFont(FNT12));
-            row9Builder.AddCell("").AddImage(Path.Combine("images", "CT_Location.png")).SetHeight(400).SetMarginTop(9);
+            row9Builder.AddCell("")
+                .AddImage(Path.Combine("images", "CT_Location.png")).SetHeight(400)
+                .SetMarginTop(9);
             AddContactInfo(row9Builder.AddCell("").SetFont(FNT12));
-
-
-            var counterFoil = section.AddTable(
-
-            (TableBuilder builder) =>
-            {
-                builder.SetContentRowStyleBorder(borderBuilder => borderBuilder.SetStroke(Stroke.None));
-            });
+        }
+        private void addCounterFoil(SectionBuilder section)
+        {
+            var counterFoil = section.AddTable()
+                .SetContentRowStyleBorder(borderBuilder =>
+                    borderBuilder.SetStroke(Stroke.None));
 
             counterFoil
                 .SetMarginTop(10f)
@@ -119,47 +115,47 @@ namespace ConcertTicket
 
 
             var row10Builder = counterFoil.AddRow();
-           YourTicket(row10Builder.AddCell("").SetPadding(0, 0, 0, 0));
+            YourTicket(row10Builder.AddCell("")
+                .SetPadding(0, 0, 0, 0));
             AddConcertData(row10Builder.AddCell("", 3, 0));
 
 
 
             var row12Builder = counterFoil.AddRow();
-            row12Builder.AddCell().AddImage(Path.Combine("images", "CT_Scheme.png")).SetHeight(100);
+            row12Builder.AddCell()
+                .AddImage(Path.Combine("images", "CT_Scheme.png")).SetHeight(100);
             FillTicketDataCounterFoil(row12Builder.AddCell());
             FillPersonalInfoCounterFoil(row12Builder.AddCell());
-            row12Builder.AddCell().AddImage(Path.Combine("images", "Qr_Code.png")).SetWidth(153);
+            row12Builder.AddCell()
+                .AddImage(Path.Combine("images", "Qr_Code.png")).SetWidth(153);
 
 
             var row13Builder = counterFoil.AddRow();
-            row13Builder.AddCell();      
+            row13Builder.AddCell();
             row13Builder.AddCell();
             row13Builder.AddCell();
             row13Builder.AddCell(TicketData.Eticket).SetFont(FNT10);
 
         }
 
-
         private void AddConcertData(TableCellBuilder cellBuilder)
         {
-
             cellBuilder
-                .AddParagraph("Nick Cave and the Bad Seeds").SetFont(FNT20B);
+                .AddParagraph("Nick Cave and the Bad Seeds").SetFont(FNT19B);
             cellBuilder
                 .AddParagraph("25.05.2021  7:30PM").SetFont(FNT12)
                 .SetBorderStroke(strokeLeft: Stroke.None, strokeTop: Stroke.None, strokeRight: Stroke.None, strokeBottom: Stroke.Solid)
                 .SetBorderWidth(2);
             cellBuilder
                 .SetBorderWidth(widthLeft: 1, widthBottom: 2, widthRight: 1, widthTop: 1);
-                
         }
 
         private void AddLogoImage(TableCellBuilder cellBuilder)
         {
-           cellBuilder.SetPadding(2, 2, 2, -150);
             cellBuilder
-                 .AddImage(Path.Combine("images", "СT_Logo_2x.png")).SetHeight(340);
-            
+                .SetPadding(2, 2, 2, -150);
+            cellBuilder
+                .AddImage(Path.Combine("images", "СT_Logo.png")).SetHeight(340); 
         }
 
         private void No(TableCellBuilder cellBuilder)
@@ -170,44 +166,46 @@ namespace ConcertTicket
                 .AddParagraph(TicketData.Eticket).SetLineSpacing(1.5f); 
             cellBuilder
                 .AddImage(Path.Combine("images", "Qr_Code.png")).SetHeight(100);
-
         }
 
        private void FillRuleA(int start, int end, TableCellBuilder cellBuilder)
         {
-            cellBuilder.AddParagraph(ConcertData.title_rulesofattendance).SetMargins(10, 10, 1, 4).SetFont(FNT12B);
+            cellBuilder.AddParagraph(ConcertData.TitleRulesOfAttendance).SetFont(FNT12B).SetMargins(10, 10, 1, 4);
             cellBuilder.SetBorderStroke(strokeLeft: Stroke.Solid, strokeTop: Stroke.Solid, strokeRight: Stroke.None, strokeBottom: Stroke.Solid);
 
-            foreach (var item in ConcertData.rulesofattendance)
+            foreach (var item in ConcertData.RulesOfAttendance)
             {
-                cellBuilder.AddParagraph(item).SetMargins(20, 0, 10, 2).SetFont(FNT9);
+                cellBuilder.AddParagraph(item).SetFont(FNT9).SetMargins(20, 0, 10, 2);
             }
         }
         private void FillRuleP(TableCellBuilder cellBuilder)
         {
-            cellBuilder.AddParagraph(ConcertData.title_rulesofpurchase).SetMargins(10, 10, 1, 4).SetFont(FNT12B);
-
-            cellBuilder.SetBorderStroke(strokeLeft: Stroke.None, strokeTop: Stroke.Solid, strokeRight: Stroke.Solid, strokeBottom: Stroke.Solid);
-            cellBuilder.AddParagraph(ConcertData.rulesofpurchase).SetMargins(10, 0, 10, 4).SetFont(FNT9).SetLineSpacing(1.2f);    
+            cellBuilder.AddParagraph(ConcertData.TitleRulesOfPurchase).SetFont(FNT12B).SetMargins(10, 10, 1, 4);
+            cellBuilder.SetBorderStroke(strokeLeft: Stroke.None, strokeTop: Stroke.Solid,
+                    strokeRight: Stroke.Solid, strokeBottom: Stroke.Solid);
+            cellBuilder.AddParagraph(ConcertData.RulesOfPurchase).SetFont(FNT9).SetLineSpacing(1.2f).SetMargins(10, 0, 10, 4);    
         }
 
         private void FillBandlist(TableCellBuilder cellBuilder)
         {
             cellBuilder.SetBorderStroke(Stroke.None);
-            cellBuilder.AddParagraph(ConcertData.title_bandslist).SetMargins(0, 20, 1, 4).SetFont(FNT12B);
-            cellBuilder.AddParagraph(ConcertData.bandslist).SetMargins(0, 0, 30, 4).SetFont(FNT9).SetLineSpacing(1.2f);
+            cellBuilder.AddParagraph(ConcertData.TitleBandsList).SetFont(FNT12B).SetMargins(0, 20, 1, 4);
+            cellBuilder.AddParagraph(ConcertData.BandsList).SetFont(FNT9).SetLineSpacing(1.2f).SetMargins(0, 0, 30, 4);
             cellBuilder.AddParagraph("");
         }
 
         private void AddContactInfo(TableCellBuilder cellBuilder)
         {
             cellBuilder.SetBorderStroke(Stroke.None).SetPadding(11,11,0,0);  
-            cellBuilder.AddParagraph(ConcertData.title_howtofind).SetMargins(0, 9, 1, 4).SetFont(FNT12B);
-            cellBuilder.AddParagraph(ConcertData.howtofind).SetFont(FNT9);
-            cellBuilder.AddParagraph(ConcertData.title_learn).SetFont(FNT12B).SetMarginTop(10);
-            cellBuilder.AddParagraph(ConcertData.facebook).SetFont(FNT9).SetAlignment(HorizontalAlignment.Left);
-            cellBuilder.AddParagraph(ConcertData.twitter).SetFont(FNT9).SetAlignment(HorizontalAlignment.Left);
-            cellBuilder.AddParagraph(ConcertData.instagram).SetFont(FNT9).SetAlignment(HorizontalAlignment.Left);
+            cellBuilder.AddParagraph(ConcertData.TitleHowtoFind).SetFont(FNT12B).SetMargins(0, 9, 1, 4);
+            cellBuilder.AddParagraph(ConcertData.HowToFind).SetFont(FNT9);
+            cellBuilder.AddParagraph(ConcertData.TitleLearn).SetFont(FNT12B).SetMarginTop(10);
+            cellBuilder.AddParagraph(ConcertData.Facebook).SetFont(FNT9)
+                .SetAlignment(HorizontalAlignment.Left);
+            cellBuilder.AddParagraph(ConcertData.Twitter).SetFont(FNT9)
+                .SetAlignment(HorizontalAlignment.Left);
+            cellBuilder.AddParagraph(ConcertData.Instagam).SetFont(FNT9)
+                .SetAlignment(HorizontalAlignment.Left);
         }
 
         private void FillTicketData(TableCellBuilder cellBuilder)
@@ -233,7 +231,7 @@ namespace ConcertTicket
         private void YourTicket(TableCellBuilder cellBuilder)
         {
             cellBuilder.SetBorderStroke(Stroke.None);
-            cellBuilder.AddParagraph(ConcertData.counterfoil).SetFont(FNT9).SetMarginRight(30);
+            cellBuilder.AddParagraph(ConcertData.CounterFoil).SetFont(FNT9).SetMarginRight(30);
         }
         private void FillTicketDataCounterFoil(TableCellBuilder cellBuilder)
         {
@@ -242,7 +240,6 @@ namespace ConcertTicket
             cellBuilder.AddParagraph("Ticket type").SetLineSpacing(1.4f);
             cellBuilder.AddParagraph("Price").SetLineSpacing(1.4f);
             cellBuilder.AddParagraph("Name").SetLineSpacing(1.4f);
-
         }
         private void FillPersonalInfoCounterFoil(TableCellBuilder cellBuilder)
         {

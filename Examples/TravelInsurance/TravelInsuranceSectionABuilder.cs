@@ -1,8 +1,7 @@
 ﻿using Gehtsoft.PDFFlow.Builder;
-using static TravelInsurance.TravelInsuranceFormBuilder;
-using System.Collections.Generic;
-using Gehtsoft.PDFFlow.Utils;
 using Gehtsoft.PDFFlow.Models.Enumerations;
+using static TravelInsurance.TravelInsuranceFormBuilder;
+using static TravelInsurance.TravelInsuranceBuilder;
 
 namespace TravelInsurance
 {
@@ -20,49 +19,46 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(3)
                         .SetPadding(0, 2, 0, 5)
-                        .AddParagraphToCell("Documents required for Section A" +
-                                            "\n• original medical receipts and copy of " +
-                                            "discharge summary or available medical report")
+                        .AddParagraphToCell("Documents required for Section A\n• original " +
+                            "medical receipts and copy of discharge summary or available " +
+                            "medical report")
             .ToTable()
                 .AddRow()
-                    .SetFont(Fonts.Helvetica(7f))
                     .SetBorderWidth(0, 0, 0, 0.5f)
                     .SetBorderStroke(Stroke.Solid)
                     .AddCell()
                         .SetPadding(1, 1, 0, 10)
                         .AddParagraph("Have you suffered this illness or injury or a similar " +
-                                      "condition or a recurrence of a previous illness or injury? ")
+                            "condition or a recurrence of a previous illness or injury? ")
                 .ToRow()
                     .AddCell()
-                        .SetPadding(1, 1, 0, 0)
-                        .AddParagraphToCell(".")
+                        .SetPadding(1, 10, 0, 0)
                         .AddParagraph()
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Yes", addTabulationSymbol: true)
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                         .ToParagraph()
                             .AddTabulationInPercent(50, TabulationType.Left)
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" No")
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                 .ToRow()
                     .AddCell()
                         .SetPadding(1, 1, 0, 10)
                         .AddParagraph("If yes, please specify:")
             .ToTable()
                 .AddRow()
-                    .SetFont(Fonts.Helvetica(7f))
                     .SetBorderWidth(0, 0, 0, 0.5f)
                     .SetBorderStroke(Stroke.Solid)
                     .AddCell()
                         .SetPadding(1, 1, 0, 0)
                         .AddParagraphToCell("State amount claimed:")
                         .AddParagraph("$")
-                            .SetFontSize(12)
+                            .SetFont(FNT12)
                 .ToRow()
                     .AddCell()
                         .SetColSpan(2)

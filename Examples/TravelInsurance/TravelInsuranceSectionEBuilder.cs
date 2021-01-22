@@ -17,10 +17,9 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(2)
                         .SetPadding(0, 5, 0, 6)
-                        .AddParagraphToCell("Documents required for Section E" +
-                                            "\nBoarding Pass, Baggage Irregularity Report," +
-                                            " Baggage acknowledgement slip and any other " +
-                                            "correspondence from the Airlines.");
+                        .AddParagraphToCell("Documents required for Section E\nBoarding Pass, " +
+                            "Baggage Irregularity Report, Baggage acknowledgement slip and any" +
+                            " other correspondence from the Airlines.");
 
             CreateRow(tableBuilder, new Dictionary<string, int>()
                 {

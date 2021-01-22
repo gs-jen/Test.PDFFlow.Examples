@@ -17,9 +17,8 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(3)
                         .SetPadding(0, 2, 0, 5)
-                        .AddParagraphToCell("Documents required for Section B" +
-                                            "\n• documents from carrier/travel agent " +
-                                            "and any relevant documents to support your claim");
+                        .AddParagraphToCell("Documents required for Section B\n• documents from " +
+                            "carrier/travel agent and any relevant documents to support your claim");
 
             CreateRow(tableBuilder, new Dictionary<string, int>()
                 {

@@ -4,29 +4,29 @@ namespace ConcertTicketData.Model
 {
     public class ConcertData
     {
-        public string title_rulesofpurchase { get; set; }
-        public string title_rulesofattendance { get; set; }
-        public string rulesofpurchase { get; set; }
-        public List<string> rulesofattendance { get; set; }
+        public string TitleRulesOfPurchase { get; set; }
+        public string TitleRulesOfAttendance { get; set; }
+        public string RulesOfPurchase { get; set; }
+        public List<string> RulesOfAttendance { get; set; }
 
-        public string title_bandslist { get; set; }
-        public string bandslist { get; set; }
+        public string TitleBandsList { get; set; }
+        public string BandsList { get; set; }
 
-        public string title_howtofind { get; set; }
-        public string howtofind { get; set; }
-        public string title_learn { get; set; }
-        public string facebook { get; set; }
-        public string twitter { get; set; }
-        public string instagram { get; set; }
-        public string counterfoil { get; set; }
+        public string TitleHowtoFind { get; set; }
+        public string HowToFind { get; set; }
+        public string TitleLearn { get; set; }
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string Instagam { get; set; }
+        public string CounterFoil { get; set; }
 
 
         public override string ToString()
         {
-            return "{" + ", title_rulesofpurchase=" + title_rulesofpurchase +
-                    ", title_rulesofattendance=" + title_rulesofattendance +
-                    ", rulesofpurchase=" + rulesofpurchase +
-                    ", rulesofattendance: [" + rulesofattendance.ToString() +  "]" +
+            return "{" + ", titlerulesofpurchase=" + TitleRulesOfPurchase +
+                    ", titlerulesofattendance=" + TitleRulesOfAttendance +
+                    ", rulesofpurchase=" + RulesOfPurchase +
+                    ", rulesofattendance: [" + RulesOfAttendance.ToString() +  "]" +
                      "}";
         }
 

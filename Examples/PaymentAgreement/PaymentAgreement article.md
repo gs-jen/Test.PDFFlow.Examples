@@ -746,7 +746,7 @@ After running the project we get
 
 * Page with the title and the logo. See Fig. 1.
 
-![Fig. 1](Images/PaymentAgreement-header.png "The  header")
+![Fig. 1](../Articles%20Images/PaymentAgreement-header.png "The  header")
 
 Fig. 1
 
@@ -790,7 +790,7 @@ What we have done in this method:
 
 After running the project we get a page with the footer. See Fig. 2.
 
-![Fig. 2](Images/PaymentAgreement-footer.png "The  footer")
+![Fig. 2](../Articles%20Images/PaymentAgreement-footer.png "The  footer")
 
 Fig. 2
 
@@ -843,7 +843,7 @@ After running the project we get the pages with text. See a fragment in Fig. 3.
 
 
 
-![Fig. 2](Images/PaymentAgreement-text.png "The text")
+![Fig. 2](../Articles%20Images/PaymentAgreement-text.png "The text")
 
 Fig. 3
 
@@ -975,7 +975,7 @@ After running the project we get the pages with text where the data values are u
 
 
 
-![Fig. 2](Images/PaymentAgreement-text2.png "The text")
+![Fig. 2](../Articles%20Images/PaymentAgreement-text2.png "The text")
 
 Fig. 4
 
@@ -1051,7 +1051,7 @@ After running the project we get a complete document. See a fragment in Fig. 5.
 
 
 
-![Fig. 2](Images/PaymentAgreement-sign.png "The text")
+![Fig. 2](../Articles%20Images/PaymentAgreement-sign.png "The text")
 
 Fig. 5
 

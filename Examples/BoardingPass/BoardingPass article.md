@@ -324,7 +324,7 @@ To place the company name and the document name, we take the second column, 75% 
 
 4.11. Header bar is completed. The next step is to create a boarding table.
 
-![Fig. 1](Images/BoardingTableSchema.png "Boarding Table Schema")
+![Fig. 1](../Articles%20Images/BoardingTableSchema.png "Boarding Table Schema")
 This is what the boarding table consists of. This is exactly the green table,
 that has the first row as a col-span and the second row with 2 cells,
 each of cell contains an inner table (so-called "table-in-table").

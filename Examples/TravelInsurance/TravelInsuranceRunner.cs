@@ -6,12 +6,9 @@ namespace TravelInsurance
     {
         public static DocumentBuilder Run()
         {
-            TravelInsuranceBuilder travelInsuranceBuilder = new TravelInsuranceBuilder() { };
+            var travelInsuranceBuilder = new TravelInsuranceBuilder() { };
 
-            DocumentBuilder doc = travelInsuranceBuilder
-                .CreateDocumentBuilder();
-
-            return doc;
+            return travelInsuranceBuilder.CreateDocumentBuilder();
         }
     }
 }

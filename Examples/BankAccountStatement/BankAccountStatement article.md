@@ -62,7 +62,7 @@ The last page consists of:
 * Balance calculation;
 * Footer.
 
-  ![Fig. 1](Images/BankAccount_Ill.png "The first page")
+  ![Fig. 1](../Articles%20Images/BankAccount_Ill.png "The first page")
 
 Fig. 1
 
@@ -346,7 +346,7 @@ The Title on the first page (See Fig. 3) is different from the Title on the othe
 * The Bank Name;
 * The text that is common to all pages: the account number, the start and end dates of the account statement, and the page numbers;
 * The bank logo that is common to all pages.
-  ![Fig. 2](Images/First_Title.png "The first page title")
+  ![Fig. 2](../Articles%20Images/First_Title.png "The first page title")
 Fig. 2
 
 In order to avoid code duplication, creation of the Title on the first and other pages is performed using the methods of the **BankAccountStatement** class that is the base for the page building classes. 
@@ -507,7 +507,7 @@ The method takes the parameters:
 
 ```
 
-![Fig. 3](Images/BankAccountStatementFirst2Panel1.png "Two panels 1")
+![Fig. 3](../Articles%20Images/BankAccountStatementFirst2Panel1.png "Two panels 1")
 
 Fig. 3
 
@@ -554,7 +554,7 @@ The method to fill the right part of the block shown in Fig. 3:
 
 
 
-![Fig. 4](Images/BankAccountStatementFirst2Panel2.png "Two panels 2")
+![Fig. 4](../Articles%20Images/BankAccountStatementFirst2Panel2.png "Two panels 2")
 
 Fig. 4
 
@@ -717,7 +717,7 @@ The right part of the block consists of 7 paragraphs with different styles (See 
 
 The method creates the **Options** block. See Fig. 5
 
-![Fig. 5](Images/BankAccountStatementFirstOptions.png "Options")
+![Fig. 5](../Articles%20Images/BankAccountStatementFirstOptions.png "Options")
 
 Fig. 5
 
@@ -866,7 +866,7 @@ The method adds one row for each checkbox and adds the label rows and the checkb
 
 The method creates the **Advertisement** block. See Fig. 6.
 
-![Fig. 6](Images/BankAccountStatementFirstAdvt.png "Advertisement")
+![Fig. 6](../Articles%20Images/BankAccountStatementFirstAdvt.png "Advertisement")
 
 Fig. 6
 
@@ -917,7 +917,7 @@ All *Titles* from the second page (See Fig. 7) contain:
 * The *Title* text common to all pages: the account number, the start and end dates of the account statement, and the page numbers;
 * The bank logo common to all pages.
 
-![Fig. 7](Images/BankAccountStatementNextTitle.png "The next page title")
+![Fig. 7](../Articles%20Images/BankAccountStatementNextTitle.png "The next page title")
 
 Fig. 7
 
@@ -940,7 +940,7 @@ Calls the **BankAccountStatement.AddTextTitle** method to add the common text to
 
 The method adds the "**Overdraft Protection**" block shown in Fig. 8.
 
-![Fig. 8](Images/BankAccountStatementNextOverdraftProtection.png "Overdraft Protection")
+![Fig. 8](../Articles%20Images/BankAccountStatementNextOverdraftProtection.png "Overdraft Protection")
 
 Fig. 8
 
@@ -955,7 +955,7 @@ The method adds:
 
 The method adds the "**Transaction history**" block shown in Fig. 9.
 
-![Fig. 9](Images/BankAccountStatementNextTransactionhistory.png "Transaction history")
+![Fig. 9](../Articles%20Images/BankAccountStatementNextTransactionhistory.png "Transaction history")
 
 Fig. 9
 
@@ -1167,7 +1167,7 @@ The method adds the "*The Ending Daily Balance does not reflect...*" text below 
 
 The method adds the "**Service fee summary**" block shown in Fig. 10.
 
-![Fig. 10](Images/BankAccountStatementNextFeesummary.png "Service fee summary")
+![Fig. 10](../Articles%20Images/BankAccountStatementNextFeesummary.png "Service fee summary")
 
 Fig. 10
 
@@ -1393,7 +1393,7 @@ The method adds rows to the *ServiceFeeSummary* table using the passed array of 
 
 The method adds the "**Transaction fee summary**" block shown in Fig. 11.
 
-![Fig. 11](Images/BankAccountStatementNextServicefeesummary1.png "Transaction fee summary") 
+![Fig. 11](../Articles%20Images/BankAccountStatementNextServicefeesummary1.png "Transaction fee summary") 
 
 Fig. 11
 
@@ -1572,7 +1572,7 @@ The **BankAccountStatementLastPageBuilder.Build method** has the responsibility 
 
 The method adds the "Polices" block shown in Fig. 12.
 
-![Fig. 12](Images/BankAccountStatementLastPolices.png "Polices") 
+![Fig. 12](../Articles%20Images/BankAccountStatementLastPolices.png "Polices") 
 
 Fig. 12
 
@@ -1629,7 +1629,7 @@ The method adds two columns and one row to the table and adds the **Polices** te
 
 The method adds the "Instructions" and the "Balance calculation" blocks to the page. See Fig. 13.
 
-![Fig. 13](Images/Instruction-calculation.png "Polices") 
+![Fig. 13](../Articles%20Images/Instruction-calculation.png "Polices") 
 
 Fig. 13
 
@@ -1704,7 +1704,7 @@ The method creates array of rows.
 ###### The methods: AddInstuctionAboutENTER, AddInstuctionAboutADD, AddInstuctionAboutSUBTRACT
 The methods add the "Instructions" block. See Fig. 14.
 
-![Fig. 14](Images/Instruction2.png "Instructions") 
+![Fig. 14](../Articles%20Images/Instruction2.png "Instructions") 
 
 Fig. 14
 
@@ -1876,7 +1876,7 @@ The method sets a cell to have no borders. The method adds a paragraphs for each
 ###### The methods: **AddEndingBalanceForm**, **AddAnyDepositsForm**, **AddAnyWithdrawalsForm**
 The methods add the input forms in the "**Instructions**" block highlighted in Fig 18 with blue rectangles. 
 
-![Fig. 15](Images/Instruction3.png "Forms") 
+![Fig. 15](../Articles%20Images/Instruction3.png "Forms") 
 
 Fig. 15
 
@@ -1893,7 +1893,7 @@ The **AddAnyWithdrawalsForm** method adds the field in the rectangle to the seco
 
 The method adds the "**Balance calculation**" to the page. See Fig. 16.
 
-![Fig. 16](Images/BankAccountStatementLastCalcTable.png "Calculation") 
+![Fig. 16](../Articles%20Images/BankAccountStatementLastCalcTable.png "Calculation") 
 
 Fig. 16
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Gehtsoft.PDFFlow.Builder;
 using Gehtsoft.PDFFlow.Models.Enumerations;
-using Gehtsoft.PDFFlow.Utils;
 using static TravelInsurance.TravelInsuranceFormBuilder;
 
 
@@ -20,12 +19,10 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(2)
                         .SetPadding(0, 7)
-                        .AddParagraphToCell("Documents required for Section C" +
-                                    "\n• Police Report and original purchase receipts " +
-                                    "and/or warranty cards")
+                        .AddParagraphToCell("Documents required for Section C\n• Police Report " +
+                            "and original purchase receipts and/or warranty cards")
             .ToTable()
                 .AddRow()
-                    .SetFont(Fonts.Helvetica(7f))
                     .SetBorderWidth(0, 0, 0, 0.5f)
                     .SetBorderStroke(Stroke.Solid)
                     .AddCell()

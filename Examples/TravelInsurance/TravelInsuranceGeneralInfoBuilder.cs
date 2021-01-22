@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Gehtsoft.PDFFlow.Builder;
 using Gehtsoft.PDFFlow.Models.Enumerations;
-using Gehtsoft.PDFFlow.Utils;
 using static TravelInsurance.TravelInsuranceFormBuilder;
+using static TravelInsurance.TravelInsuranceBuilder;
 
 namespace TravelInsurance
 {
@@ -19,11 +19,9 @@ namespace TravelInsurance
                     .AddCell()
                         .SetColSpan(3)
                         .SetPadding(0, 7)
-                        .AddParagraphToCell("Documents required" + 
-                                            "\nFor all travel claims please submit air tickets" +
-                                            " and boarding pass." +
-                                            "\nFor annual plans, please provide a copy of the " +
-                                            "passport showing duration of trip.");
+                        .AddParagraphToCell("Documents required\nFor all travel claims please " +
+                            "submit air tickets and boarding pass.\nFor annual plans, please " +
+                            "provide a copy of the passport showing duration of trip.");
 
             CreateRow(tableBuilder, new Dictionary<string, int>()
                 {
@@ -39,7 +37,6 @@ namespace TravelInsurance
 
             tableBuilder
                 .AddRow()
-                    .SetFont(Fonts.Helvetica(7f))
                     .SetBorderWidth(0, 0, 0, 0.5f)
                     .SetBorderStroke(Stroke.Solid)
                     .AddCell()
@@ -58,14 +55,14 @@ namespace TravelInsurance
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Male", addTabulationSymbol: true)
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                         .ToParagraph()
                             .AddTabulationInPercent(50, TabulationType.Left)
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Female")
-                                .SetFontSize(12);
+                                .SetFont(FNT12);
 
             CreateRow(tableBuilder, new Dictionary<string, int>()
                 {
@@ -76,7 +73,6 @@ namespace TravelInsurance
 
             tableBuilder
                 .AddRow()
-                    .SetFont(Fonts.Helvetica(7f))
                     .SetBorderWidth(0, 0, 0, 0.5f)
                     .SetBorderStroke(Stroke.Solid)
                     .AddCell()
@@ -86,42 +82,39 @@ namespace TravelInsurance
                 .ToRow()
                     .AddCell()
                         .SetColSpan(2)
-                        .SetPadding(1, 1, 0, 0)
-                        .AddParagraphToCell(".")
+                        .SetPadding(1, 10, 0, 0)
                         .AddParagraph()
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Yes", addTabulationSymbol: true)
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                         .ToParagraph()
                             .AddTabulationInPercent(25, TabulationType.Left)
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" No")
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
             .ToTable()
                 .AddRow()
-                    .SetFont(Fonts.Helvetica(7f))
                     .SetBorderWidth(0, 0, 0, 0.5f)
                     .SetBorderStroke(Stroke.Solid)
                     .AddCell()
-                        .SetPadding(1, 1, 0, 0)
-                        .AddParagraphToCell("GST Registered:")
+                        .SetPadding(1, 10, 0, 0)
                         .AddParagraph()
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Yes", addTabulationSymbol: true)
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                         .ToParagraph()
                             .AddTabulationInPercent(50, TabulationType.Left)
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" No")
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                 .ToRow()
                     .AddCell()
                         .SetPadding(1, 1, 0, 17)
@@ -135,14 +128,14 @@ namespace TravelInsurance
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Business", addTabulationSymbol: true)
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                         .ToParagraph()
                             .AddTabulationInPercent(50, TabulationType.Left)
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Vacation")
-                                .SetFontSize(12);
+                                .SetFont(FNT12);
 
             CreateRow(tableBuilder, new Dictionary<string, int>()
                 {
@@ -153,7 +146,6 @@ namespace TravelInsurance
 
             tableBuilder
                 .AddRow()
-                    .SetFont(Fonts.Helvetica(7f))
                     .SetBorderWidth(0, 0, 0, 0.5f)
                     .SetBorderStroke(Stroke.Solid)
                     .AddCell()
@@ -162,21 +154,20 @@ namespace TravelInsurance
                                       "covering\nyou in respect of this event?")
                 .ToRow()
                     .AddCell()
-                        .SetPadding(1, 1, 0, 0)
-                        .AddParagraphToCell(".")
+                        .SetPadding(1, 10, 0, 0)
                         .AddParagraph()
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" Yes", addTabulationSymbol: true)
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                         .ToParagraph()
                             .AddTabulationInPercent(50, TabulationType.Left)
                             .AddInlineImage(CheckboxPath)
                                 .SetSize(16, 16)
                         .ToParagraph()
                             .AddText(" No")
-                                .SetFontSize(12)
+                                .SetFont(FNT12)
                 .ToRow()
                     .AddCell()
                         .SetPadding(1, 1, 0, 10)
