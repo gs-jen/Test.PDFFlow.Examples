@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Gehtsoft.PDFFlow.MultilevelList.Model
+namespace WarehouseShipmentReport.Model
 {
     [DataContract]
-    public class MultilevelListData
+    public class WarehouseShipmentReportData
     {
         [DataMember]
         public string Shipment { get; set; }
