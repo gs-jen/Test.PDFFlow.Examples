@@ -65,7 +65,7 @@ namespace ConcertTicket
             var row1Builder = concertTable.AddRow();
             AddLogoImage(row1Builder.AddCell("", 0, 2));
             AddConcertData(row1Builder.AddCell("", 3, 0)
-                .SetPadding(32, 0, 0, 8));
+                .SetPadding(32, 0, 0, 0));
 
             var row2Builder = concertTable.AddRow();
             row2Builder.AddCell();
@@ -137,7 +137,7 @@ namespace ConcertTicket
             cellBuilder
                 .AddParagraph("Epic Rock Concert").SetFont(FNT19B);
             cellBuilder
-                .AddParagraph("25.05.2021  7:30PM").SetFont(FNT12)
+                .AddParagraph("07/28/2021  9:00PM").SetFont(FNT12)
                 .SetBorderStroke(strokeLeft: Stroke.None, strokeTop: Stroke.None, strokeRight: Stroke.None, strokeBottom: Stroke.Solid)
                 .SetBorderWidth(2);
         }
