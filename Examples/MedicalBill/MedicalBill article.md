@@ -253,7 +253,8 @@ etc.
 ## 10. The MedicalBillBodyBuilder class
 
 Responsibility:
-* Create a table of the Medical Bill calculation block. See. Fig. 3
+* Create a table of the Medical Bill calculation block. See Fig. 3
+
 ![Fig. 3](../Articles%20Images/MedicalBillFrontBody.png "The front side of the table of calculation")
 
 Fig. 3
@@ -314,6 +315,7 @@ etc.
 
 Responsibility:
 * Create the bottom part of Medical Bill. See Fig. 4.
+
 ![Fig. 4](../Articles%20Images/MedicalBillFrontBottom.png "The front side of the table of calculation")
 
 Fig. 4
@@ -580,6 +582,7 @@ This information represents two identical blocks at the very bottom of the front
 
 Responsibility: 
 * Create a block of text on the second (back) page of the document.
+
 ![Fig. 5](../Articles%20Images/MedicalBillBackText.png "The text of the back page")
 
 Fig. 5. 
@@ -830,7 +833,8 @@ The method adds a text element to the paragraph.
 
 
 Responsibility: 
-* Build a block of forms on the second (back) page of the document. 
+* Build a block of forms on the second (back) page of the document.
+ 
 ![Fig. 6](../Articles%20Images/MedicalBillBackForm.png "The back side of the Form")
 
 Fig. 6. 
