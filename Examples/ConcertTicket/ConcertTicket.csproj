@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Barcodes\Gehtsoft.PDFFlowLib.Barcodes\src\Gehtsoft.PDFFlowLib.Barcodes.csproj" />
     <ProjectReference Include="..\..\Gehtsoft.PDFFlow\Gehtsoft.PDFFlow.csproj" />
   </ItemGroup>
 

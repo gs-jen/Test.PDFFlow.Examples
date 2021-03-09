@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AviationChecklist": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\AviationChecklist.pdf msedge"
+    }
+  }
+}

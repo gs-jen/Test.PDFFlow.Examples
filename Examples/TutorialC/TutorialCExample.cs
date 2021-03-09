@@ -147,7 +147,7 @@ namespace TutorialC
             var s = builder.AddSection().SetOrientation(PageOrientation.Portrait)
                 .SetMargins(PageMargins)
                 .AddParagraph()
-                    .AddTextToParagraph("3. Desicion making")
+                    .AddTextToParagraph("3. Decision making")
                     .SetFont(DocumentFontTitleWhite)
                     .SetAlignment(HorizontalAlignment.Center)
                     .SetBackColor(ColorBackground)

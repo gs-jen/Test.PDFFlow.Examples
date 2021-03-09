@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using WarehouseShipmentReport.Model;
 using Gehtsoft.PDFFlow.Builder;
 using Gehtsoft.PDFFlow.Models.Shared;
 using Gehtsoft.PDFFlow.Models.Enumerations;
-using Gehtsoft.PDFFlow.Models.Content;
-using Gehtsoft.PDFFlow.Models.Document;
 using Gehtsoft.PDFFlow.UserUtils;
+using Gehtsoft.Barcodes.Enums;
 
 namespace WarehouseShipmentReport
 {
@@ -16,19 +14,15 @@ namespace WarehouseShipmentReport
     {
         #region Fields
 
-        private static readonly string PdfFile;
         private static readonly string ProjectDir;
         private static readonly string WarehouseShipmentReportJsonFile;
         private static readonly string WarehouseShipmentReportJsonContent;
         public static List<WarehouseShipmentReportData> WarehouseShipmentReportData { get; }
         private static readonly FontBuilder DocumentFont;
-        private static readonly FontBuilder ItalicFont;
         private static readonly FontBuilder BoldFont;
         private static readonly FontBuilder TitleFont;
         private static readonly FontBuilder OrangeFont;
         private static readonly string LogoUrl;
-        private static readonly string ShipmentBarcodeUrl;
-        private static readonly string ProductBarcodeUrl;
 
         #endregion Fields
 
@@ -36,28 +30,19 @@ namespace WarehouseShipmentReport
 
         static WarehouseShipmentReportBuilder()
         {
-            PdfFile = Path.Combine(Environment.CurrentDirectory, "WarehouseShipmentReport.pdf");
             ProjectDir = Directory.GetCurrentDirectory();
             WarehouseShipmentReportJsonFile = Path.Combine(ProjectDir, "Content", "WarehouseShipmentReport.json");
             WarehouseShipmentReportJsonContent = File.ReadAllText(WarehouseShipmentReportJsonFile);
             WarehouseShipmentReportData = JsonConvert.DeserializeObject<List<WarehouseShipmentReportData>>(WarehouseShipmentReportJsonContent);
 
-
             FontBuilder documentFont() => StyleSheet.DefaultFont().SetSize(14);
-            //FontBuilder italicFont() => documentFont().SetName("Times-Italic");
-            FontBuilder italicFont() => documentFont().SetItalic();
-            //FontBuilder boldFont() => documentFont().SetName("Times-Bold");
             FontBuilder boldFont() => documentFont().SetBold();
             DocumentFont = documentFont();
-            ItalicFont = italicFont();
             BoldFont = boldFont();
             TitleFont = boldFont().SetSize(24).SetColor(Color.FromRgba(60.0/255.0, 29.0/255.0, 0.0));
             OrangeFont = boldFont().SetSize(24).SetColor(Color.FromRgba(245.0 / 255.0, 166.0 / 255.0, 35.0/255.0));
-            //ItalicBrownFont = italicFont().SetColor(Color.FromRgba(0.4, 0.3, 0.0));
 
             LogoUrl = Path.Combine(ProjectDir, "Images", "Logo.png");
-            ShipmentBarcodeUrl = Path.Combine(ProjectDir, "Images", "Shipment_barcode.png");
-            ProductBarcodeUrl = Path.Combine(ProjectDir, "Images", "Product_barcode.png");
 
         }
 
@@ -67,25 +52,20 @@ namespace WarehouseShipmentReport
 
         internal static DocumentBuilder AddWarehouseShipmentReport(this DocumentBuilder builder)
         {
-            builder.AddSection(s =>
-            {
-                SetSectionSettings(s);
-
-                AddRepeatingHeader(s);
-
-                //AddWarehouseShipmentReportTitle(s);
-
-                AddWarehouseShipmentReportData(s);                                
-            });
+            builder
+                .AddSection()
+                    .SetSectionSettings()
+                    .AddRepeatingHeader()
+                    .AddWarehouseShipmentReportData();                                
             return builder;
         }
 
-        internal static void SetSectionSettings(SectionBuilder s)
+        internal static SectionBuilder SetSectionSettings(this SectionBuilder s)
         {
-            s.SetMargins(30).SetSize(PaperSize.A4).SetOrientation(PageOrientation.Portrait).SetNumerationStyle(NumerationStyle.Arabic);
+            return s.SetMargins(30).SetSize(PaperSize.A4).SetOrientation(PageOrientation.Portrait).SetNumerationStyle(NumerationStyle.Arabic);
         }
 
-        internal static void AddRepeatingHeader(SectionBuilder s)
+        internal static SectionBuilder AddRepeatingHeader(this SectionBuilder s)
         {
             s.AddHeaderToBothPages(100)
                 .AddTable()
@@ -122,6 +102,7 @@ namespace WarehouseShipmentReport
                         .SetColor(Color.FromRgba(0.6, 0.3, 0.0))
                         .SetWidth(2)
                         .SetMarginTop(10);
+            return s;
         }
 
         internal static void AddWarehouseShipmentReportTitle(SectionBuilder s)
@@ -130,9 +111,9 @@ namespace WarehouseShipmentReport
             s.AddLine().SetColor(Color.FromRgba(0.6, 0.3, 0.0)).SetStroke(Stroke.Solid).SetWidth(2);
         }
 
-        internal static void AddWarehouseShipmentReportData(SectionBuilder s)
+        internal static SectionBuilder AddWarehouseShipmentReportData(this SectionBuilder s)
         {
-            void AddLevel(uint level, string text)
+            void AddLevel(uint level, string text, string barcode = "")
             {
                 FontBuilder font = DocumentFont;
                 ListBullet listBullet = ListBullet.Bullet;
@@ -164,18 +145,7 @@ namespace WarehouseShipmentReport
                     if (level == 2)
                     {
                         p.SetListNumbered(NumerationStyle.Arabic, level, 20f, true);
-                        p.AddInlineImage(ProductBarcodeUrl, 96, 23, ScalingMode.UserDefined);
-                    }
-                    if (level == 0)
-                    {
-                        p
-                            .SetMarginBottom(10)
-                            .AddTabSymbol()
-                            .AddTabulationInPercent(100, TabulationType.Right)
-                            .AddInlineImage(ShipmentBarcodeUrl)
-                                .SetScale(ScalingMode.UserDefined)
-                                .SetWidth(150)
-                                .SetHeight(60);
+                        p.AddBarcode(barcode, BarcodeType.GS1_128C, 150f, 0); 
                     }
                 });                
             }
@@ -189,13 +159,15 @@ namespace WarehouseShipmentReport
                         AddLevel(1, "Order " + order.Order + ", " + order.Customer);
                         if (order.Products != null)
                         foreach (var product in order.Products)
-                        {                                    
-                            AddLevel(2, "");
+                        {
+                            if (product.Barcode != null)
+                                AddLevel(2, "", product.Barcode);
                             AddLevel(3, "Product Code: " + product.Code);
                             AddLevel(3, "Product Name: " + product.Name);
                         }
                     }
-            }                       
+            }
+            return s;
         }       
 
         #endregion Methods

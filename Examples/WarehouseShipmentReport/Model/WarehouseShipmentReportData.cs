@@ -27,6 +27,8 @@ namespace WarehouseShipmentReport.Model
     public class ProductData
     {
         [DataMember]
+        public string Barcode { get; set; }
+        [DataMember]
         public string Code { get; set; }
         [DataMember]
         public string Name { get; set; }        

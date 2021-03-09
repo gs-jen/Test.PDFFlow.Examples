@@ -13,14 +13,15 @@ The example source is available in [repo](https://github.com/gehtsoft-usa/PDF.Fl
 - [Open the project in Visual Studio](#1-open-the-project-in-visual-studio)
 - [Run the sample application](#2-run-the-sample-application)
 - [Source code structure](#3-source-code-structure)
-- [Adding the Data](#4-adding-the-data)
+- [Adding the data](#4-adding-the-data)
 - [The Program class](#5-the-program-class)
 - [The RentalAgreementRunner class](#6-the-rentalagreementrunner-class)
 - [The RentalAgreementBuilder class](#7-the-rentalagreementbuilder-class)
-- [The RentalAgreementTextBuilder class](#8the-rentalagreementtextbuilder-class)
-- [The RentalAgreementHelperBuilder class](#9-the-rentalagreementhelperbuilder-class)
-- [The RentalAgreementAmountBuilder class](#10-the-rentalagreementamountbuilder-class)
-- [The RentalAgreementCheckListBuilder class](#11-the-rentalagreementchecklistbuilder-class)
+- [The RentalAgreementTextBuilder class](#8-the-rentalagreementtextbuilder-class)
+- [The RentalAgreementHelper class](#9-the-rentalagreementhelper-class)
+- [The RentalAgreementDepositBuilder class](#10-the-rentalagreementddepositbuilder-class)
+- [The RentalAgreementAmountBuilder class](#11-the-rentalagreementdamountbuilder-class)
+- [The RentalAgreementCheckListBuilder class](#12-the-rentalagreementchecklistbuilder-class)
 - [Summary](#summary)
 
 # Prerequisites
@@ -38,7 +39,7 @@ The example shows how to create a “Rental Agreement” that is a complex fifte
 
 The document consists of:
 
-* Nine text pages and signature page
+* Nine pages with the main text of the agreement and a signature page
 * Security Deposit Receipt page
 * AMOUNT ($) DUE AT SIGNING page
 * Three Move-in Checklist pages
@@ -93,258 +94,258 @@ The reasons to write several classes are the following (in descending order of p
 * Reduction of responsibility of each class. This helps to limit the size of code for each class, which improves understanding of the code example.
 * Independent blocks of content. The document consists of several content blocks which are independent, so for each class you can select its own block.
 
-## 4. Adding the Data
+## 4. Adding the data
 
-* The data used in the document is stored in json files and processed in the related model files. Create the folowing files.
+The data used in the document are stored in JSON files and processed in the corresponding model files. Create the following files:
 
-  * **Content/ra-agreement.json** file:
+* **Content/ra-agreement.json** file:
 
-    ```json
-    {
-      "Date": "2020-12-09T00:00:00",
-      "AptAddress": "1 Main Street, Apt 4, Small Town, Alabama, 20992",
-      "AptFeaturesBath": "2.5 bathroom(s)",
+  ```json
+  {
+    "Date": "2020-12-09T00:00:00",
+    "AptAddress": "1 Main Street, Apt 4, Small Town, Alabama, 20992",
+    "AptFeaturesBath": "2.5 bathroom(s)",
+    
+      ...
       
-        <...>
-        
-      "PetsAllowed": "Two (2) pets",
-      "PetsFee": 300,
-      "ArmedForcesNotice": "thirty (30) days",
-      "LawsState": "North Carolina"
-    }
-    ```
+    "PetsAllowed": "Two (2) pets",
+    "PetsFee": 300,
+    "ArmedForcesNotice": "thirty (30) days",
+    "LawsState": "North Carolina"
+  }
+  ```
 
-  * **Model/AgreementData.cs** file:
+* **Model/AgreementData.cs** file:
 
-    ```c#
-    namespace RentalAgreement.Model
-    {
-        public class AgreementData
-        {
-    
-            public DateTime Date { get; set; }
-            public string AptAddress { get; set; }
-            public string AptFeaturesBath { get; set; }
-            public string AptFeatures { get; set; }
-            public string AptFurnishing { get; set; }
-            public string Appliances { get; set; }
-          public DateTime DateBegin { get; set; }
-            public DateTime DateEnd { get; set; }
-          public string CancelNoticePeriodDays { get; set; }
-            public string ContinueNoticePeriondDays { get; set; }
-            public double MonthPayment { get; set; }
-            public double NonsufficientFundsFee { get; set; }
-            public double LateFee { get; set; }
-            public double SecurityDeposit { get; set; }
-            public double RightToBuyPrice { get; set; }
-            public double RightToBuyDeposit { get; set; }
-            public string AbandonmentPeriod { get; set; }
-            public string ParkingSpace { get; set; }
-            public string ParkingSpaceDescription { get; set; }
-            public int TerminationPeriod { get; set; }
-            public double TerminationFee { get; set; }
-            public string PetsAllowed { get; set; }
-            public double PetsFee { get; set; }
-            public string ArmedForcesNotice { get; set; }
-            public string LawsState { get; set; }
-    
-    
-            public override string ToString() 
-            {
-                return  "AgreementData{" +  
-                        "Date=" + Date +
-                        ", AptAddress=" + AptAddress +
-                        ", AptFeaturesBath=" + AptFeaturesBath +
-                        ", AptFeatures=" + AptFeatures +
-                        ", AptFurnishing=" + AptFurnishing +
-                        ", Appliances=" + Appliances +
-                        ", DateBegin=" + DateBegin +
-                        ", DateEnd=" + DateEnd +
-                        ", CancelNoticePeriodDays=" + CancelNoticePeriodDays +
-                        ", ContinueNoticePeriondDays=" + ContinueNoticePeriondDays +
-                        ", MonthPayment=" + MonthPayment +
-                        ", NonsufficientFundsFee=" + NonsufficientFundsFee +
-                        ", LateFee=" + LateFee +
-                        ", SecurityDeposit=" + SecurityDeposit +
-                        ", RightToBuyPrice=" + RightToBuyPrice +
-                        ", RightToBuyDeposit=" + RightToBuyDeposit +
-                        ", AbandonmentPeriod=" + AbandonmentPeriod +
-                        ", ParkingSpace=" + ParkingSpace +
-                        ", ParkingSpaceDescription=" + ParkingSpaceDescription +
-                        ", TerminationPeriod=" + TerminationPeriod +
-                        ", TerminationFee=" + TerminationFee +
-                        ", PetsAllowed=" + PetsAllowed +
-                        ", PetsFee=" + PetsFee +
-                        ", ArmedForcesNotice=" + ArmedForcesNotice +
-                        ", LawsState=" + LawsState +
-                        "}";
-            }
-        }
-    }
-    ```
-
-  * **Content/ra-agreement-text.json** file:
-
-    ```json
-    [
+  ```c#
+  namespace RentalAgreement.Model
+  {
+      public class AgreementData
       {
-        "Header": "OCCUPANT(S):",
-        "Text": [
-          "The Premises is to be occupied strictly as a residential dwelling with the following Two (2) Occupants to reside on the Premises in addition to the Tenant(s) mentioned above: {tenantAdd.knownAs.asList}, hereinafter known as the “Occupant(s)”."
-        ]
-      },
-        
-    	<...>
-        
-      {
-        "Header": "ENTIRE AGREEMENT:",
-        "Text": [
-        "This Agreement contains all the terms agreed to by the parties relating to its subject matter including any attachments or addendums. This Agreement replaces all previous discussions, understandings, and oral agreements. The Landlord and Tenant(s) agree to the terms and conditions and shall be bound until the end of the Lease Term.",
-          "The parties have agreed and executed this agreement on {agreement.date}."
-        ]
-      } 
-    ]
-    ```
-
-  * **Model/AgreementText.cs** file:
-
-    ```
-    namespace RentalAgreement.Model
-    {
-        public class AgreementText
-        {
-    
-            public string Header { get; set; }
-            public string[] Text { get; set; }
-    
-            public override string ToString() 
-            {
-                return  "AgreementText{" +  
-                        "Header=" + Header +
-                        ", Text=" + Text +
-                         "}";
-            }
-        }
-    }
-    ```
-
-  * **Content/ra-checklist.json** file:
-
-    ```json
-    [
-      {
-        "Name": "Living Room",
-        "Items": [
-            "Floors Condition",
-            "Walls Condition",
-            "Ceiling Condition",
-            "Windows Condition",
-            "Lighting Condition",
-            "Electrical Outlets",
-            "Other Condition",
-            "Other Condition"
-        ]
-      },
-        
-     	<...>
-      
-      {
-        "Name": "Other",
-        "Items": [
-            "Heating Condition",
-            "AC Unit",
-            "Hot Water",
-            "Smoke Alarm",
-            "Door Bell",
-            "Other Condition",
-            "Other Condition"
-        ]
+  
+          public DateTime Date { get; set; }
+          public string AptAddress { get; set; }
+          public string AptFeaturesBath { get; set; }
+          public string AptFeatures { get; set; }
+          public string AptFurnishing { get; set; }
+          public string Appliances { get; set; }
+        public DateTime DateBegin { get; set; }
+          public DateTime DateEnd { get; set; }
+        public string CancelNoticePeriodDays { get; set; }
+          public string ContinueNoticePeriondDays { get; set; }
+          public double MonthPayment { get; set; }
+          public double NonsufficientFundsFee { get; set; }
+          public double LateFee { get; set; }
+          public double SecurityDeposit { get; set; }
+          public double RightToBuyPrice { get; set; }
+          public double RightToBuyDeposit { get; set; }
+          public string AbandonmentPeriod { get; set; }
+          public string ParkingSpace { get; set; }
+          public string ParkingSpaceDescription { get; set; }
+          public int TerminationPeriod { get; set; }
+          public double TerminationFee { get; set; }
+          public string PetsAllowed { get; set; }
+          public double PetsFee { get; set; }
+          public string ArmedForcesNotice { get; set; }
+          public string LawsState { get; set; }
+  
+  
+          public override string ToString() 
+          {
+              return  "AgreementData{" +  
+                      "Date=" + Date +
+                      ", AptAddress=" + AptAddress +
+                      ", AptFeaturesBath=" + AptFeaturesBath +
+                      ", AptFeatures=" + AptFeatures +
+                      ", AptFurnishing=" + AptFurnishing +
+                      ", Appliances=" + Appliances +
+                      ", DateBegin=" + DateBegin +
+                      ", DateEnd=" + DateEnd +
+                      ", CancelNoticePeriodDays=" + CancelNoticePeriodDays +
+                      ", ContinueNoticePeriondDays=" + ContinueNoticePeriondDays +
+                      ", MonthPayment=" + MonthPayment +
+                      ", NonsufficientFundsFee=" + NonsufficientFundsFee +
+                      ", LateFee=" + LateFee +
+                      ", SecurityDeposit=" + SecurityDeposit +
+                      ", RightToBuyPrice=" + RightToBuyPrice +
+                      ", RightToBuyDeposit=" + RightToBuyDeposit +
+                      ", AbandonmentPeriod=" + AbandonmentPeriod +
+                      ", ParkingSpace=" + ParkingSpace +
+                      ", ParkingSpaceDescription=" + ParkingSpaceDescription +
+                      ", TerminationPeriod=" + TerminationPeriod +
+                      ", TerminationFee=" + TerminationFee +
+                      ", PetsAllowed=" + PetsAllowed +
+                      ", PetsFee=" + PetsFee +
+                      ", ArmedForcesNotice=" + ArmedForcesNotice +
+                      ", LawsState=" + LawsState +
+                      "}";
+          }
       }
-    ]
-    ```
+  }
+  ```
 
-  * **Model/CheckList.cs** file:
+* **Content/ra-agreement-text.json** file:
+
+  ```json
+  [
+    {
+      "Header": "OCCUPANT(S):",
+      "Text": [
+        "The Premises is to be occupied strictly as a residential dwelling with the following Two (2) Occupants to reside on the Premises in addition to the Tenant(s) mentioned above: {tenantAdd.knownAs.asList}, hereinafter known as the “Occupant(s)”."
+      ]
+    },
+      
+  	...
+      
+    {
+      "Header": "ENTIRE AGREEMENT:",
+      "Text": [
+      "This Agreement contains all the terms agreed to by the parties relating to its subject matter including any attachments or addendums. This Agreement replaces all previous discussions, understandings, and oral agreements. The Landlord and Tenant(s) agree to the terms and conditions and shall be bound until the end of the Lease Term.",
+        "The parties have agreed and executed this agreement on {agreement.date}."
+      ]
+    } 
+  ]
+  ```
+
+* **Model/AgreementText.cs** file:
+
+  ```
+  namespace RentalAgreement.Model
+  {
+      public class AgreementText
+      {
+  
+          public string Header { get; set; }
+          public string[] Text { get; set; }
+  
+          public override string ToString() 
+          {
+              return  "AgreementText{" +  
+                      "Header=" + Header +
+                      ", Text=" + Text +
+                       "}";
+          }
+      }
+  }
+  ```
+
+* **Content/ra-checklist.json** file:
+
+  ```json
+  [
+    {
+      "Name": "Living Room",
+      "Items": [
+          "Floors Condition",
+          "Walls Condition",
+          "Ceiling Condition",
+          "Windows Condition",
+          "Lighting Condition",
+          "Electrical Outlets",
+          "Other Condition",
+          "Other Condition"
+      ]
+    },
+      
+   	...
+    
+    {
+      "Name": "Other",
+      "Items": [
+          "Heating Condition",
+          "AC Unit",
+          "Hot Water",
+          "Smoke Alarm",
+          "Door Bell",
+          "Other Condition",
+          "Other Condition"
+      ]
+    }
+  ]
+  ```
+
+* **Model/CheckList.cs** file:
+
+  ```c#
+  namespace RentalAgreement.Model
+  {
+      public class CheckList
+      {
+  
+          public string Name { get; set; } = "";
+          public string[] Items { get; set; } = { };
+  
+          public override string ToString() 
+          {
+              return "CheckList{" +  
+                     "Name=" + Name +
+                      ", Items=" + Items +
+                     "}";
+          }
+      }
+  }
+  ```
+
+* **Content/ra-parties.json** file:
+
+  ```json
+  [
+    {
+      "Party": "Landlord",
+      "KnownAs": "Landlord",
+      "Name": "Best Landlord Company",
+      "NameExt": "ATTN. John Landlord",
+      "MailAddress": "2 Maple Ln, Suite A, Best Town, Alabama, 29227",
+      "Signer": "John Landlord as President of Best Landlord Company"
+    },  
+  
+      ...
+      
+    {
+      "Party": "Manager",
+      "Name": "The management company",
+      "KnownAs": "Best Management Company",
+      "MailAddress": "5 Maple Ave, Suite 12A, Best City, Alabama, 29277",
+      "Phone": "(888) 222-3333",
+      "EmailAddress": "email@email.com"
+    }
+  ]
+  ```
+
+ * **Model/PartyData.cs** file:
 
     ```c#
     namespace RentalAgreement.Model
     {
-        public class CheckList
+        public class PartyData
         {
     
+            public string Party { get; set; } = "";
+            public string KnownAs { get; set; } = "";
             public string Name { get; set; } = "";
-            public string[] Items { get; set; } = { };
+            public string NameExt { get; set; } = "";
+            public string MailAddress { get; set; } = "";
+            public string Phone { get; set; } = "";
+            public string EmailAddress { get; set; } = "";
+            public string Signer { get; set; } = "";
+    
     
             public override string ToString() 
-            {
-                return "CheckList{" +  
-                       "Name=" + Name +
-                        ", Items=" + Items +
+          {
+                return "AgreementText{" +  
+                       "Party=" + Party +
+                        ", KnownAs=" + KnownAs +
+                        ", Name=" + Name +
+                        ", NameExt=" + NameExt +
+                        ", MailAddress=" + MailAddress +
+                        ", Phone=" + Phone +
+                        ", EmailAddress=" + EmailAddress +
+                        ", Signer=" + EmailAddress +
                        "}";
             }
         }
     }
     ```
-
-  * **Content/ra-parties.json** file:
-
-    ```json
-    [
-      {
-        "Party": "Landlord",
-        "KnownAs": "Landlord",
-        "Name": "Best Landlord Company",
-        "NameExt": "ATTN. John Landlord",
-        "MailAddress": "2 Maple Ln, Suite A, Best Town, Alabama, 29227",
-        "Signer": "John Landlord as President of Best Landlord Company"
-      },  
-    
-        <...>
-        
-      {
-        "Party": "Manager",
-        "Name": "The management company",
-        "KnownAs": "Best Management Company",
-        "MailAddress": "5 Maple Ave, Suite 12A, Best City, Alabama, 29277",
-        "Phone": "(888) 222-3333",
-        "EmailAddress": "email@email.com"
-      }
-    ]
-    ```
-
-    * **Model/PartyData.cs** file:
-
-      ```c#
-      namespace RentalAgreement.Model
-      {
-          public class PartyData
-          {
-      
-              public string Party { get; set; } = "";
-              public string KnownAs { get; set; } = "";
-              public string Name { get; set; } = "";
-              public string NameExt { get; set; } = "";
-              public string MailAddress { get; set; } = "";
-              public string Phone { get; set; } = "";
-              public string EmailAddress { get; set; } = "";
-              public string Signer { get; set; } = "";
-      
-      
-              public override string ToString() 
-            {
-                  return "AgreementText{" +  
-                         "Party=" + Party +
-                          ", KnownAs=" + KnownAs +
-                          ", Name=" + Name +
-                          ", NameExt=" + NameExt +
-                          ", MailAddress=" + MailAddress +
-                          ", Phone=" + Phone +
-                          ", EmailAddress=" + EmailAddress +
-                          ", Signer=" + EmailAddress +
-                         "}";
-              }
-          }
-      }
-      ```
 
 ## 5. The Program class
 
@@ -362,7 +363,7 @@ Responsibility:
 
 * Create an object of the `RentalAgreementBuilder` class.
 
-* Initialize its properties with data of Rental Agreement. The properties of the `RentalAgreementBuilder` class have the default values, which are located in the several json files.
+* Initialize its properties with data of Rental Agreement. The properties of the `RentalAgreementBuilder` class have the default values located in several JSON files.
 
   ```c#
               string agreementTextJsonFile = CheckFile(
@@ -422,76 +423,80 @@ Responsibility:
 The method `DocumentBuilder` has the following responsibilities:
 
 * Create an object of the `Gehtsoft.PDFFlow.Builder.DocumentBuilder` class.
-* Create an object of the `rentalAgreementTextBuilder` class and build the lease page s using the `Build` method of the created object.
-* Create an object of the `rentalAgreementDepositBuilder` class and build the deposit page using the `Build` method of the created object.
-* Create an object of the `rentalAgreementAmountBuilder` class and build the amount page using the `Build` method of the created object
-* Create an object of the `rentalAgreementCheckListBuilder` class and build the checklist pages using the `Build` method of the created object
+* Create an object of the `rentalAgreementTextBuilder` class and build the pages with the main text of the agreement and the signature page using the `Build` method of the created object.
+* Create an object of the `rentalAgreementDepositBuilder` class and build the Security Deposit Receipt page using the `Build` method of the created object.
+* Create an object of the `rentalAgreementAmountBuilder` class and build the AMOUNT ($) DUE AT SIGNING page using the `Build` method of the created object.
+* Create an object of the `rentalAgreementCheckListBuilder` class and build the Move-in Checklist pages using the `Build` method of the created object.
 * Return the created object of the `Gehtsoft.PDFFlow.Builder.DocumentBuilder` class.
 
 ## 8. The RentalAgreementTextBuilder class
 
 Responsibility:
 
-* Create a page with repeating area and set its parameters:
+* Create a page with a repeating area and set its parameters. See Fig. 1.
 
-  ![Fig. 1](C:\Users\dns\Articles Images\RentalAgreement-01.png)
+  ![](../Articles%20Images/RentalAgreement-01.png "The page")
 
-```csharp
-internal static readonly Box Margins = new Box(25, 16, 60, 16);
-internal static readonly XUnit PageWidth =
-    (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Width -
-        (Margins.Left + Margins.Right));
-
-internal static readonly XUnit PageHeight =
-    (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Height -
-        (Margins.Top + Margins.Bottom));
-
-	internal void Build(DocumentBuilder documentBuilder)
-        {
-            var sectionBuilder = documentBuilder.AddSection();
-            sectionBuilder
-                .SetOrientation(Orientation)
-                .SetMargins(Margins);
-            sectionBuilder.SetRepeatingAreaPriority(
-                RepeatingAreaPriority.Vertical);
-        }         
-```
-
- `SetRepeatingAreaPriority`  method sets priority of automatic repeating areas for given section (Horizontal or Vertical). If Horizontal - headers and footers stretches to full width, if Vertical - left and rigth areas stretches to full height
-
+  Fig. 1.
+  
+  This is done by the `Build` method.
+  
+  ```c#
+  internal static readonly Box Margins = new Box(25, 16, 60, 16);
+  internal static readonly XUnit PageWidth =
+      (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Width -
+          (Margins.Left + Margins.Right));
+  
+  internal static readonly XUnit PageHeight =
+      (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Height -
+          (Margins.Top + Margins.Bottom));
+  
+  	internal void Build(DocumentBuilder documentBuilder)
+          {
+              var sectionBuilder = documentBuilder.AddSection();
+              sectionBuilder
+                  .SetOrientation(Orientation)
+                  .SetMargins(Margins);
+              sectionBuilder.SetRepeatingAreaPriority(
+                  RepeatingAreaPriority.Vertical);
+          }         
+  ```
+  
+  The `SetRepeatingAreaPriority` method sets the priority of automatic repeating areas for the section (Horizontal or Vertical). If Horizontal - headers and footers stretch to the full width, if Vertical - left and right areas stretch to the full height.
+  
 * Set the data from the models: 
 
-```csharp
-        private PartyData landlord = new PartyData();
-        private PartyData manager = new PartyData();
-        private List<PartyData> tenant = new List<PartyData>();
-        private List<PartyData> tenantAdd = new List<PartyData>();
-        private AgreementData agreement;
+  ```c#
+          private PartyData landlord = new PartyData();
+          private PartyData manager = new PartyData();
+          private List<PartyData> tenant = new List<PartyData>();
+          private List<PartyData> tenantAdd = new List<PartyData>();
+          private AgreementData agreement;
+  
+          internal Dictionary<string, string> dict;
+          private List<AgreementText> agreementText;
+  
+          internal RentalAgreementTextBuilder SetLandord(PartyData landlord)
+          {
+              this.landlord = landlord;
+              return this;
+          }
+  
+          ...
+  
+          internal RentalAgreementTextBuilder SetAgreementText(
+              List<AgreementText> agreementText)
+          {
+              this.agreementText = agreementText;
+              return this;
+          }
+  ```
 
-        internal Dictionary<string, string> dict;
-        private List<AgreementText> agreementText;
-
-        internal RentalAgreementTextBuilder SetLandord(PartyData landlord)
-        {
-            this.landlord = landlord;
-            return this;
-        }
-
-        <...>
-
-        internal RentalAgreementTextBuilder SetAgreementText(
-            List<AgreementText> agreementText)
-        {
-            this.agreementText = agreementText;
-            return this;
-        }
-```
-
-* Create the nine pages of the document.
+* Create the pages with the main text of the agreement and the signature page.
   This is done by the `Build` method. It creates objects one by one and runs the following methods:
 
 
-* `BuidHeader`
+* `BuildHeader`
 * `BuildFooterBar`
 * `BuildEqualHousingOpportunity`
 * `BuildTextsPages`
@@ -521,27 +526,91 @@ internal static readonly XUnit PageHeight =
         }
 ```
 
-Repeating headers and  footers is created by the `BuildHeader` and `BuildFooterBar` methods. They are built in `rentalAgreementHelper` class.
+Repeating headers and footers are created by the `BuildHeader` and `BuildFooterBar` methods. They are built in the `rentalAgreementHelper` class.
+
+###### The BuildSignatures method
+
+This method creates the signature page. It consists of the image from file **images/ra-logo-2x.png** and a line created using the `AddLine` method:
+
+  ```c#
+       private void BuildSignatures(SectionBuilder sectionBuilder, 
+            Sign[] data)
+        {
+            for (int i = 0, l = data.Length; i < l; i++)
+            {
+                Sign sign = data[i];
+                var paragraphBuilder = sectionBuilder.AddParagraph();
+                if (i == 0)
+                {
+                    paragraphBuilder.SetMarginTop(SIGNATURES_TOP_MARGIN);
+                }
+                if (i < 2)
+                {
+                    paragraphBuilder
+                        .SetFont(HEADER_FONT)
+                        .AddTextToParagraph(
+                            i == 0 ?
+                            "LANDLORD(S) SIGNATURE" :
+                            "TENANT(S) SIGNATURE"
+                        )
+                        .SetMarginBottom(SIGNATURE_BOTTOM_MARGIN);
+                    paragraphBuilder = sectionBuilder.AddParagraph();
+                }
+                paragraphBuilder
+                    .AddTextToParagraph(sign.name + " ", HEADER_FONT, true)
+                    .AddTabulation(380, TabulationType.Left,
+                        TabulationLeading.BottomLine);
+                if (sign.value != null)
+                {
+                    paragraphBuilder = sectionBuilder.AddParagraph()
+                        .AddTextToParagraph(sign.value);
+                }
+                paragraphBuilder.SetMarginBottom(SIGNATURE_BOTTOM_MARGIN);
+            }
+        }
+  ```
+
+
 
 ## 9. The RentalAgreementHelper class
 
 Responsibility:
 
-* Create Header repeating on every page:
+* Create a header repeating on every page. See Fig. 2.
+
+  ![](../Articles%20Images/RentalAgreementHeader.png "The header")
+
+Fig. 2.
+
+###### The BuildHeader method
+
+This method refers to `RepeatingAreaBuilder` and builds the header. It consists of the image from the file **images/ra-logo-2x.png** and a line created using the `AddLine` method.
 
   ```c#
-      internal static void BuildHeader(RepeatingAreaBuilder builder, 
-          float pageWidth)
-      {
-          builder
-              .AddImage(Path.Combine("images", "ra-logo-2x.png"),
-                  XSize.FromHeight(60));
-          builder.AddLine(pageWidth, 1.5f, Stroke.Solid, Color.Gray)
-              .SetMarginTop(5);
-      }
+  internal static void BuildHeader(RepeatingAreaBuilder builder, 
+      float pageWidth)
+  {
+      builder
+          .AddImage(Path.Combine("images", "ra-logo-2x.png"),
+              XSize.FromHeight(60));
+      builder.AddLine(pageWidth, 1.5f, Stroke.Solid, Color.Gray)
+          .SetMarginTop(5);
+  }
   ```
 
-* Create footer with signature form only for the text pages:
+* Create a footer with the signature form only for the pages with the main text of the agreement. See Fig. 3.
+
+  ![](../Articles%20Images/RentalAgreementFooterBar.png "The footer bar")
+
+  Fig. 3.
+
+  ###### The BuildFooterBar method
+
+  This method refers to `RepeatingAreaBuilder` and builds the left part of the footer. It consists of a table with a single row and three cells in it. The first cell contains the text "Initials", the second cell contains a link, and the third cell contains the image from the file **images/ra-barcode.png** and the line, created by `AddLine` method.
+
+  ###### The BuildEqualHousingOpportunity method
+
+  This method refers to `RepeatingAreaBuilder` and builds the right part of the footer. It only builds in the image from file **images/equal-housing-opportunity-logo-160w.png**.
 
   ```c#
           internal static void BuildFooterBar(RepeatingAreaBuilder builder, float barImageHeight)
@@ -599,7 +668,15 @@ Responsibility:
       }
   ```
 
-* Create empty footer for the rest of the pages:
+* Create a footer with a page number for the rest of the pages. See Fig. 4.
+
+  ![](../Articles%20Images/RentalAgreementFooter.png "The footer")
+
+  Fig. 4.
+
+  ###### The BuildFooter method
+
+  This method refers to `RepeatingAreaBuilder` and builds the footer with a page number for the other pages of the document. It consists of one paragraph created using the `AddTextToParagraph` and `AddPageNumber` methods.
 
   ```c#
       internal static void BuildFooter(RepeatingAreaBuilder builder)
@@ -614,9 +691,7 @@ Responsibility:
       }
   ```
 
-  `BuildFooter` method only numbers pages.
-
-* Configure data format:
+* Configure the date format.
 
   ```c#
       internal static string DateToString(DateTime date)
@@ -638,23 +713,15 @@ Responsibility:
 
 Responsibility:
 
-* Create a form of the Security Deposit Receipt and set page properties:
+* Create a form of the Security Deposit Receipt page and set the page properties. See Fig. 5.
 
-  ```c#
-  internal class RentalAgreementDepositBuilder
-  {
-      internal static readonly Box Margins = new Box(60, 16, 60, 16);
-      internal static readonly XUnit PageWidth =
-          (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Width -
-              (Margins.Left + Margins.Right));
-  
-      internal static readonly XUnit PageHeight =
-          (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Height -
-              (Margins.Top + Margins.Bottom));
-   }
-  ```
+  ![](../Articles%20Images/RentalAgreementDeposit.png "The deposit")
 
-* Construct the form is by the `Build` method:
+  Fig. 5.
+
+  ###### The Build method
+
+  This method builds the Security Deposit Receipt page. The `AddTextToParagraph` method adds a text element to the paragraph. The `AddTabulation` method adds a tabulation to the paragraph, it can be configured using the `TabulationType` and `TabulationLeading` parameters.
 
   ```c#
           internal void Build(DocumentBuilder documentBuilder)
@@ -690,151 +757,164 @@ Responsibility:
           }
   ```
 
-  `AddTextToParagraph` method adds text element with given text string to paragraph.
-
-  `AddTabulation` method adds tabulation to paragraph, it can be configured by `TabulationType` and `TabulationLeading` methods.
 
 ## 11. The RentalAgreementAmountBuilder class
 
 Responsibility:
 
-* Create the AMOUNT ($) DUE AT SIGNING page and set page properties:
+* Create the AMOUNT ($) DUE AT SIGNING page and set the page properties. See Fig. 6.
+
+  ![](../Articles%20Images/RentalAgreementAmount.png "The amount")
+
+  Fig. 6.
+
+  The page is created by the `Build` method.
+
+  ###### The Build method
+
+  This method builds several paragraphs in the page. These paragraphs consist of the text and data implemented by the `AddTextToParagraph` method.
 
   ```c#
-  internal class RentalAgreementAmountBuilder
-      {
-          private const float MAIN_TITLE_BOTTOM_MARGIN = 40;
-          internal static readonly Box Margins = new Box(60, 16, 60, 16);
-          internal static readonly XUnit PageWidth =
-              (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Width -
-                  (Margins.Left + Margins.Right));
-  
-          internal static readonly XUnit PageHeight =
-              (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Height -
-                  (Margins.Top + Margins.Bottom));
-  
-          private AgreementData agreement;
-  }
+          internal void Build(DocumentBuilder documentBuilder)
+          {
+              var sectionBuilder = documentBuilder
+                  .AddSection()
+                  .SetOrientation(Orientation)
+                  .SetMargins(Margins);
+              //sectionBuilder.SetRepeatingAreaPriority(RepeatingAreaPriority.Vertical);
+              BuildHeader(sectionBuilder.AddHeaderToBothPages(140), PageWidth);
+              BuildFooter(sectionBuilder.AddFooterToBothPages(40));
+              //BuildFooterQqualHousingOpportunity(sectionBuilder.AddFooterToBothPages(85));
+              //BuildQqualHousingOpportunity(sectionBuilder.AddRptAreaLeftToBothPages(85));
+              sectionBuilder.AddParagraph()
+                  .SetAlignment(HorizontalAlignment.Center)
+                  .SetMarginBottom(MAIN_TITLE_BOTTOM_MARGIN)
+                  .AddText("AMOUNT ($) DUE AT SIGNING");
+              sectionBuilder.AddParagraph()
+                  .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
+                  .AddTextToParagraph("Security Deposit: ", HEADER_FONT)
+                  .AddTextToParagraph(FundToString(agreement.SecurityDeposit), 
+                      TEXT_FONT);
+              sectionBuilder.AddParagraph()
+                  .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
+                  .AddTextToParagraph("First (1st) Month's Rent: ", HEADER_FONT)
+                  .AddTextToParagraph(FundToString(agreement.MonthPayment), 
+                      TEXT_FONT);
+              sectionBuilder.AddParagraph()
+                  .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
+                  .AddTextToParagraph("Pet Fee(s): ", HEADER_FONT)
+                  .AddTextToParagraph(FundToString(agreement.PetsFee), 
+                      TEXT_FONT)
+                  .AddTextToParagraph(" for all the Pet(s)", TEXT_FONT);
+          }
   ```
 
-* Construct a form by the `Build` method:
+  
 
-```c#
-        internal void Build(DocumentBuilder documentBuilder)
-        {
-            var sectionBuilder = documentBuilder
-                .AddSection()
-                .SetOrientation(Orientation)
-                .SetMargins(Margins);
-            //sectionBuilder.SetRepeatingAreaPriority(RepeatingAreaPriority.Vertical);
-            BuildHeader(sectionBuilder.AddHeaderToBothPages(140), PageWidth);
-            BuildFooter(sectionBuilder.AddFooterToBothPages(40));
-            //BuildFooterQqualHousingOpportunity(sectionBuilder.AddFooterToBothPages(85));
-            //BuildQqualHousingOpportunity(sectionBuilder.AddRptAreaLeftToBothPages(85));
-            sectionBuilder.AddParagraph()
-                .SetAlignment(HorizontalAlignment.Center)
-                .SetMarginBottom(MAIN_TITLE_BOTTOM_MARGIN)
-                .AddText("AMOUNT ($) DUE AT SIGNING");
-            sectionBuilder.AddParagraph()
-                .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
-                .AddTextToParagraph("Security Deposit: ", HEADER_FONT)
-                .AddTextToParagraph(FundToString(agreement.SecurityDeposit), 
-                    TEXT_FONT);
-            sectionBuilder.AddParagraph()
-                .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
-                .AddTextToParagraph("First (1st) Month's Rent: ", HEADER_FONT)
-                .AddTextToParagraph(FundToString(agreement.MonthPayment), 
-                    TEXT_FONT);
-            sectionBuilder.AddParagraph()
-                .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
-                .AddTextToParagraph("Pet Fee(s): ", HEADER_FONT)
-                .AddTextToParagraph(FundToString(agreement.PetsFee), 
-                    TEXT_FONT)
-                .AddTextToParagraph(" for all the Pet(s)", TEXT_FONT);
-        }
-```
-
-## 12. The **RentalAgreementCheckList**Builder class
+## 12. The RentalAgreementCheckList Builder class
 
 Responsibility: 
 
-* Create three Move-in checklist pages.
+* Create the Move-in Checklist pages. See Fig. 7.
 
-Set page properties:
+  ![](../Articles%20Images/RentalAgreementCheckList.png "The checklist")
 
-```c#
-    internal class RentalAgreementCheckListBuilder
-    {
+  Fig. 7.
 
-        private const float MAIN_TITLE_BOTTOM_MARGIN = 10;
-        const float RAGRAPH_BOTTOM_MARGIN = 16;
-        const float ROW_BOTTOM_MARGIN = 1;
+* Configure the data:
 
-        internal static readonly Box Margins = new Box(60, 16, 60, 16);
-        internal static readonly XUnit PageWidth =
-            (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Width -
-                (Margins.Left + Margins.Right));
+  ```
+      private AgreementData agreement;
+      private List<CheckList> checkList;
+  
+      internal RentalAgreementCheckListBuilder SetAgreement(
+          AgreementData agreement)
+      {
+          this.agreement = agreement;
+          return this;
+      }
+  
+      internal RentalAgreementCheckListBuilder SetCheckList(
+          List<CheckList> checkList)
+      {
+          this.checkList = checkList;
+          return this;
+      }
+  ```
 
-        internal static readonly XUnit PageHeight =
-            (PredefinedSizeBuilder.ToSize(PaperSize.Letter).Height -
-                (Margins.Top + Margins.Bottom));
-	}
-```
+  ###### The Build method
 
-Configure the data:
+  This method builds three checklist pages. 
 
-```c#
-    private AgreementData agreement;
-    private List<CheckList> checkList;
+  ```c#
+          internal void Build(DocumentBuilder documentBuilder)
+          {
+              var sectionBuilder = documentBuilder.AddSection();
+              sectionBuilder
+                  .SetOrientation(Orientation)
+                  .SetMargins(Margins);
+              sectionBuilder.SetRepeatingAreaPriority(
+                  RepeatingAreaPriority.Vertical);
+              BuildHeader(sectionBuilder.AddHeaderToBothPages(80), PageWidth);
+              BuildFooter(sectionBuilder.AddFooterToBothPages(40));
+              //BuildFooterQqualHousingOpportunity(sectionBuilder.AddFooterToBothPages(85));
+              //BuildQqualHousingOpportunity(sectionBuilder.AddRptAreaLeftToBothPages(65), PageHeight);
+              sectionBuilder.AddParagraph()
+                  .SetFont(MAIN_TITLE_FONT)
+                  .SetAlignment(HorizontalAlignment.Center)
+                  .SetMarginBottom(MAIN_TITLE_BOTTOM_MARGIN)
+                  .AddText("Move-in Checklist");
+              
+              	...
+                  
+              sectionBuilder.AddParagraph()
+                  .SetFont(TEXT_FONT)
+                  .SetMarginBottom(RAGRAPH_BOTTOM_MARGIN)
+                  .AddTextToParagraph("Write the condition of the space along with any specific damage or repairs needed. Be sure to write" +
+                      " any repair needed such as paint chipping, wall damage, or any lessened area that could be" +
+                      " considered maintenance needed at the end of the lease, and therefore, be deducted at the end of the" +
+                      " Lease Term.");
+              foreach(CheckList room in checkList)
+              {
+                  sectionBuilder.AddParagraph()
+                      .SetFont(MAIN_TITLE_FONT)
+                      .SetMarginBottom(RAGRAPH_BOTTOM_MARGIN)
+                      .AddTextToParagraph(room.Name);
+                  for (int i = room.Items.Length - 1, j = 0; i >= 0; i--, j++)
+                  {
+                      string item = room.Items[j];
+                      sectionBuilder.AddParagraph()
+                          .SetMarginBottom(i > 0 ? 
+                                      ROW_BOTTOM_MARGIN : 
+                                      RAGRAPH_BOTTOM_MARGIN)
+                          .AddTextToParagraph(item + " ", TEXT_FONT, true)
+                          .AddTabulation(220, TabulationType.Left,
+                              TabulationLeading.BottomLine)
+                          .AddTabulation(460, TabulationType.Left,
+                              TabulationLeading.BottomLine)
+                          .AddTextToParagraph(" Specific Damage ", TEXT_FONT, 
+                          true);
+  
+                  }
+  
+              }
+             
+              ...
+                  
+              sectionBuilder.AddParagraph()
+                  .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
+                  .AddTextToParagraph("Landlord's Signature ", HEADER_FONT, 
+                      true)
+                  .AddTabulation(250, TabulationType.Left,
+                      TabulationLeading.BottomLine);
+          }
+  ```
 
-    internal RentalAgreementCheckListBuilder SetAgreement(
-        AgreementData agreement)
-    {
-        this.agreement = agreement;
-        return this;
-    }
+# Summary
 
-    internal RentalAgreementCheckListBuilder SetCheckList(
-        List<CheckList> checkList)
-    {
-        this.checkList = checkList;
-        return this;
-    }
-```
+The above example showed how to create a complex document that includes tables, images, and paragraphs.
 
-Construct a form by the `Build` method.
+The resulting **RentalAgreement.pdf** document can be accessed [here](https://github.com/gehtsoft-usa/PDF.Flow.Examples/tree/master/Examples/results/RentalAgreement.pdf).
 
-```c#
-        internal void Build(DocumentBuilder documentBuilder)
-        {
-            var sectionBuilder = documentBuilder
-                .AddSection()
-                .SetOrientation(Orientation)
-                .SetMargins(Margins);
-            //sectionBuilder.SetRepeatingAreaPriority(RepeatingAreaPriority.Vertical);
-            BuildHeader(sectionBuilder.AddHeaderToBothPages(140), PageWidth);
-            BuildFooter(sectionBuilder.AddFooterToBothPages(40));
-            //BuildFooterQqualHousingOpportunity(sectionBuilder.AddFooterToBothPages(85));
-            //BuildQqualHousingOpportunity(sectionBuilder.AddRptAreaLeftToBothPages(85));
-            sectionBuilder.AddParagraph()
-                .SetAlignment(HorizontalAlignment.Center)
-                .SetMarginBottom(MAIN_TITLE_BOTTOM_MARGIN)
-                .AddText("AMOUNT ($) DUE AT SIGNING");
-            sectionBuilder.AddParagraph()
-                .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
-                .AddTextToParagraph("Security Deposit: ", HEADER_FONT)
-                .AddTextToParagraph(FundToString(agreement.SecurityDeposit), 
-                    TEXT_FONT);
-            sectionBuilder.AddParagraph()
-                .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
-                .AddTextToParagraph("First (1st) Month's Rent: ", HEADER_FONT)
-                .AddTextToParagraph(FundToString(agreement.MonthPayment), 
-                    TEXT_FONT);
-            sectionBuilder.AddParagraph()
-                .SetMarginBottom(PARAGRAPH_BOTTOM_MARGIN)
-                .AddTextToParagraph("Pet Fee(s): ", HEADER_FONT)
-                .AddTextToParagraph(FundToString(agreement.PetsFee), 
-                    TEXT_FONT)
-                .AddTextToParagraph(" for all the Pet(s)", TEXT_FONT);
-        }
-```
+The example source is available in [repo](https://github.com/gehtsoft-usa/PDF.Flow.Examples/tree/master/Examples/RentalAgreement).
+

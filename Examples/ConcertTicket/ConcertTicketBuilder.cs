@@ -7,7 +7,6 @@ using System.IO;
 using System.Globalization;
 using Gehtsoft.PDFFlow.UserUtils;
 
-
 namespace ConcertTicket
 {
     internal class ConcertTicketBuilder
@@ -123,7 +122,7 @@ namespace ConcertTicket
             FillTicketDataCounterFoil(row6Builder.AddCell());
             FillPersonalInfoCounterFoil(row6Builder.AddCell());
             row6Builder.AddCell()
-                .AddImage(Path.Combine("images", "Qr_Code.png")).SetWidth(153);
+                .AddQRCodeUrl("https://gehtsoftusa.com/", 4, Color.Black, Color.White, false).SetWidth(153);
 
             var row7Builder = counterFoil.AddRow();
             row7Builder.AddCell();
@@ -157,7 +156,8 @@ namespace ConcertTicket
             cellBuilder
                 .AddParagraph(TicketData.Eticket).SetLineSpacing(1.5f); 
             cellBuilder
-                .AddImage(Path.Combine("images", "Qr_Code.png")).SetHeight(100);
+                .AddQRCodeUrl("https://gehtsoftusa.com/", 4, 
+                              Color.Black, Color.White, false).SetHeight(100);
         }
 
        private void FillRuleA(int start, int end, TableCellBuilder cellBuilder)
