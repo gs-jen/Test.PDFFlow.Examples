@@ -145,7 +145,8 @@ namespace WarehouseShipmentReport
                     if (level == 2)
                     {
                         p.SetListNumbered(NumerationStyle.Arabic, level, 20f, true);
-                        p.AddBarcode(barcode, BarcodeType.GS1_128C, 150f, 0); 
+                        p.AddBarcode(barcode, BarcodeType.GS1_128C, 220f, 0, hasQuiteZones: false)
+                            .SetMarginLeft(5f); 
                     }
                 });                
             }
@@ -158,12 +159,14 @@ namespace WarehouseShipmentReport
                     {
                         AddLevel(1, "Order " + order.Order + ", " + order.Customer);
                         if (order.Products != null)
-                        foreach (var product in order.Products)
                         {
-                            if (product.Barcode != null)
-                                AddLevel(2, "", product.Barcode);
-                            AddLevel(3, "Product Code: " + product.Code);
-                            AddLevel(3, "Product Name: " + product.Name);
+                            foreach (var product in order.Products)
+                            {
+                                if (product.Barcode != null)
+                                    AddLevel(2, "", product.Barcode);
+                                AddLevel(3, "Product Code: " + product.Code);
+                                AddLevel(3, "Product Name: " + product.Name);
+                            }
                         }
                     }
             }

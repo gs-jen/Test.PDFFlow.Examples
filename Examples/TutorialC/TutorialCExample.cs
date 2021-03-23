@@ -262,6 +262,7 @@ compiler. So just make use of it and enjoy your learning.", DocumentFontBrown,
                                         ignoreNewLineSymbol: true)
             .ToSection()
                 .AddImage(imageUrl)
+                    .SetPaddings(5)
                     .SetScale(ScalingMode.OriginalSize)
                     .SetAlignment(HorizontalAlignment.Center)
                     .SetBorder(Stroke.Double, ColorBackground, 3)

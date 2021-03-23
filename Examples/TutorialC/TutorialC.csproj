@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gehtsoft.PDFFlowLib" Version="2.1.0" />
     <PackageReference Include="Haru.Net" Version="1.0.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
@@ -31,10 +32,6 @@
     <Reference Include="System">
       <HintPath>System</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Gehtsoft.PDFFlow\Gehtsoft.PDFFlow.csproj" />
   </ItemGroup>
 
 </Project>

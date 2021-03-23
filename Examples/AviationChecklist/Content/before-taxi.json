@@ -1,0 +1,15 @@
+{
+    "generators": "ON",
+    "probeHeat": "ON",
+    "antiIce": "ON",
+    "APumps": "ON",
+    "airConditioning": "PACKS AUTO",
+    "isolationValve": "AUTO",
+    "startSwitches": "CONT.",
+    "apu": "OFF",
+    "recall": "CHECKED",
+    "flightControls": "CHECKED",
+    "flaps": "_SELECTED",
+    "stabTrim": "_REQUIRED",
+    "startLevers": "IDLE D-NT"
+}

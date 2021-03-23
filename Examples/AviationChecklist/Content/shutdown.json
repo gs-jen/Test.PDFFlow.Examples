@@ -1,0 +1,22 @@
+{
+    "fuel": "PUMPS OFF",
+    "electricalApuGpu": "ON_",
+    "fastenBelts": "OFF",
+    "windowHeat": "OFF",
+    "probeHeat": "OFF",
+    "antiIce": "OFF",
+    "electricHydPumps": "OFF",
+    "voiceRecorder": "ON",
+    "airConditioning": "OFF",
+    "exteriorLights": "STEADY / STEADY AND LOGO",
+    "startSwitches": "OFF",
+    "autobrake": "OFF",
+    "speedbrake": "DOWN",
+    "flaps": "UP",
+    "parkingBrake": "SET",
+    "startLevers": "CUTOFF",
+    "weatherRadar": "OFF",
+    "transponder": "STANDBY",
+    "cvrCb": "IN / OUT",
+    "cockpitDoor": "UNLOCKED"
+}

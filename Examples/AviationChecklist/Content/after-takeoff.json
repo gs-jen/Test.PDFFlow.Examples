@@ -1,0 +1,8 @@
+{
+    "airConditioning": "SET",
+    "autoBrake": "OFF",
+    "startSwitches": "OFF",
+    "flaps": "UP",
+    "landingGear": "UP",
+    "altimeters": "_SET"
+}

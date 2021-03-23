@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gehtsoft.PDFFlowLib" Version="2.1.0" />
+    <PackageReference Include="Gehtsoft.PDFFlowLib.Barcodes" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
@@ -50,11 +52,6 @@
     <None Update="Image\Product.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Barcodes\Gehtsoft.PDFFlowLib.Barcodes\src\Gehtsoft.PDFFlowLib.Barcodes.csproj" />
-    <ProjectReference Include="..\..\Gehtsoft.PDFFlow\Gehtsoft.PDFFlow.csproj" />
   </ItemGroup>
 
 
